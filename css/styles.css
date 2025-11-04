@@ -302,3 +302,58 @@ body{
 }
 img{ max-width:100%; height:auto; display:block }
 a{ color:inherit }
+
+/* ======= Patch mobile (ne modifie PAS la version desktop) ======= */
+@media (max-width: 640px){
+
+  /* 1) Couleur et lisibilité globale */
+  :root{ --text:#ffffff; }               /* variable texte = blanc uniquement sur mobile */
+  body, .subtitle, .prose, .contact, 
+  .contact p, .page, .page-sub,
+  .charte li{ color:#ffffff; }
+  .prose a{ color:#ffffff; text-decoration-thickness: 2px; }
+  .charte li::before{ color:#ffffff; }   /* numéros de la charte en blanc */
+
+  /* 2) Titres : recentrage et tailles adaptées sans recouvrement */
+  .brand{
+    margin: 64px auto 10px;
+    text-align: center;
+    width: auto;
+    margin-left: 0;
+  }
+  .brand-line1, .brand-line2{ transform: none; }
+  .brand-line1{ font-size: clamp(36px, 12vw, 60px); }
+  .brand-line2{ font-size: clamp(38px, 13vw, 68px); }
+
+  .page-header{ margin-top: 92px; }      /* évite que le titre interne touche le haut */
+
+  /* 3) Lune + décors : on recentre la lune et on allège les éléments décoratifs */
+  .moon-wrap{
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(64vw, 260px);
+    top: 24px;
+    opacity: .75;
+  }
+
+  /* Les gros décors gênent la lecture sur mobile : on les masque.
+     (si tu veux les garder, remplace display:none par opacity:.15) */
+  .deco-cards,
+  .deco-clouds-top,
+  .deco-clouds-bottom,
+  .deco-crystals{ display:none; }
+  .deco{ opacity:.12; }                   /* étoiles conservées mais très légères */
+
+  /* 4) Zones de texte : confort de lecture */
+  .hero, .page{ padding: 22px 16px 48px; }
+  .subtitle{ font-size: 18px; margin-top: 14px; }
+  .prose, .contact p{ font-size: 18px; line-height: 1.85; }
+  .prose-centered, .charte-centered{ max-width: 92%; }
+
+  /* 5) Boutons : un peu plus compacts, sans toucher au style desktop */
+  .btn-group{ gap: 12px; }
+  .btn-primary{
+    font-size: 1.05rem;
+    padding: .95rem 1.3rem;
+  }
+}
