@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Prendre rendez-vous – L’intuitive Guidance</title>
+  <link rel="preload" href="fonts/BlackadderITC.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="css/styles.css" />
+  <meta name="description" content="Prenez rendez-vous pour une séance de voyance ou un accompagnement spirituel personnalisé, dans un cadre bienveillant et confidentiel." />
+</head>
+<body>
+  <!-- Décors -->
+  <img src="images/cards.png"  class="deco deco-cards"         alt="" aria-hidden="true">
+  <img src="images/clouds.png" class="deco deco-clouds-top"    alt="" aria-hidden="true">
+  <img src="images/clouds.png" class="deco deco-clouds-bottom" alt="" aria-hidden="true">
+  <img src="images/stars.png"  class="deco deco-stars"         alt="" aria-hidden="true">
+  <img src="images/crystals.png" class="deco deco-crystals"    alt="" aria-hidden="true">
+
+  <main class="page">
+    <!-- En-tête de page -->
+    <header class="page-header">
+      <h1 class="page-title">Prendre rendez-vous</h1>
+      <span class="page-sub">Séance intuitive & accompagnement</span>
+    </header>
+
+    <!-- Contenu principal -->
+    <section class="prose" style="text-align:center;">
+      <p>
+        Vous souhaitez réserver une séance de voyance, de guidance spirituelle ou un accompagnement personnalisé ?<br><br>
+        Remplissez le formulaire ci-dessous ou contactez-moi directement via le moyen qui vous convient le mieux.
+      </p>
+
+      <!-- Formulaire de contact -->
+      <form action="https://formspree.io/f/your-form-id" method="POST" class="contact-form" style="margin-top:40px;">
+        <label for="nom">Nom complet :</label><br>
+        <input type="text" id="nom" name="nom" required style="width:80%;padding:10px;margin:10px 0;border-radius:8px;border:none;"><br>
+
+        <label for="email">Adresse e-mail :</label><br>
+        <input type="email" id="email" name="_replyto" required style="width:80%;padding:10px;margin:10px 0;border-radius:8px;border:none;"><br>
+
+        <label for="message">Votre message ou disponibilité :</label><br>
+        <textarea id="message" name="message" rows="5" required style="width:80%;padding:10px;margin:10px 0;border-radius:8px;border:none;"></textarea><br>
+
+        <button type="submit" class="btn-primary">Envoyer ma demande</button>
+      </form>
+
+      <p style="margin-top:32px;">Vous pouvez aussi écrire à :<br>
+        <a href="mailto:contact@lintuitiveguidance.fr" style="text-decoration:underline;color:var(--gold);">
+          contact@lintuitiveguidance.fr
+        </a>
+      </p>
+
+      <div class="btn-group" style="margin-top:40px;">
+        <a href="index.html" class="btn-primary btn-alt">← Retour à l’accueil</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small>&copy; <span id="year"></span> L’intuitive Guidance — Tous droits réservés.</small>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
