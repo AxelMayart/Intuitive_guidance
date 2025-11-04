@@ -173,7 +173,7 @@ body{
   filter: drop-shadow(0 0 10px rgba(245,223,77,.22));
 }
 
-/* ========= Section contact (accueil) ========= */
+/* ========= Section contact ========= */
 .contact{
   position: relative;
   z-index: 2;
@@ -192,7 +192,7 @@ body{
   text-align: center;
 }
 
-/* ========= Pages internes (charte / rendez-vous) ========= */
+/* ========= Pages internes ========= */
 .page{
   position:relative;
   min-height: 92vh;
@@ -215,7 +215,7 @@ body{
   font-size: clamp(22px, 3.2vw, 36px);
 }
 
-/* Corps de page lisible et centré */
+/* Corps de page */
 .prose{
   color: var(--text);
   font-size: clamp(16px, 1.9vw, 20px);
@@ -228,7 +228,7 @@ body{
   text-align: center;
 }
 
-/* Liste de la charte : bloc centré, texte à gauche pour la lecture */
+/* Liste charte */
 .charte{
   counter-reset: c;
   list-style: none;
@@ -246,22 +246,10 @@ body{
 }
 .charte li::before{
   content: counter(c) ". ";
-  color: var(--text);     /* numéros blancs */
+  color: var(--text);
   font-weight: 700;
   margin-right: 6px;
 }
-
-/* Mise en évidence des contacts */
-.contact-highlight{
-  font-size: clamp(18px, 2.2vw, 24px);
-  font-weight: 700;
-  margin: .4rem 0 1.2rem 0;
-}
-.prose a{
-  color: var(--text);
-  text-decoration: underline;
-}
-.prose a:hover{ color: var(--gold); }
 
 /* ========= Footer ========= */
 .footer{
@@ -274,86 +262,61 @@ body{
   z-index: 2;
 }
 
-/* ========= Responsive ========= */
-@media (max-width: 900px){
-  .moon-wrap{ width: min(44vw, 340px); left: clamp(18px, 6vw, 80px); top: clamp(18px, 6vh, 90px); }
-  .brand{ margin-left: clamp(26px, 14vw, 200px); }
-  .brand-line1{ transform: translateX(0%); }
-  .brand-line2{ transform: translateX(12%); }
-  .deco-clouds-bottom{ width:min(40vw, 300px) }
-  .deco-crystals{ width:min(34vw, 180px) }
-  .prose-centered{ max-width: 86%; }
-}
-
-@media (max-width: 640px){
-  .brand-line1{ font-size: clamp(36px, 12vw, 60px); }
-  .brand-line2{ font-size: clamp(38px, 13vw, 68px); }
-  .moon-wrap{ width: min(52vw, 300px); left: clamp(10px, 6vw, 60px); }
-  .deco-cards{ width: 150px }
-  .deco-clouds-top{ width: 240px }
-  .deco-clouds-bottom{ width: 210px; bottom: 70px; }
-  .deco-stars{ width: 110px }
-  .deco-crystals{ width: 160px; bottom: 86px; }
-
-  /* Lecture confortable sur mobile */
-  .prose{ font-size: 18px; line-height: 1.85; }
-  .prose-centered{ max-width: 92%; }
-  .charte li{ margin-bottom: 14px; }
-}
-img{ max-width:100%; height:auto; display:block }
-a{ color:inherit }
-
-/* ======= Patch mobile (ne modifie PAS la version desktop) ======= */
+/* ========= Mobile amélioré avec dark overlay ========= */
 @media (max-width: 640px){
 
-  /* 1) Couleur et lisibilité globale */
-  :root{ --text:#ffffff; }               /* variable texte = blanc uniquement sur mobile */
-  body, .subtitle, .prose, .contact, 
-  .contact p, .page, .page-sub,
-  .charte li{ color:#ffffff; }
+  :root{ --text:#ffffff; }
+  body, .subtitle, .prose, .contact, .contact p,
+  .page, .page-sub, .charte li{ color:#ffffff; }
   .prose a{ color:#ffffff; text-decoration-thickness: 2px; }
-  .charte li::before{ color:#ffffff; }   /* numéros de la charte en blanc */
+  .charte li::before{ color:#ffffff; }
+  .prose, .contact p, .subtitle, .charte li{
+    text-shadow: 0 1px 2px rgba(0,0,0,.35);
+  }
 
-  /* 2) Titres : recentrage et tailles adaptées sans recouvrement */
+  /* Voile doux pour lecture */
+  .hero::before, .page::before, .contact::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(8,9,48,.55);
+    backdrop-filter: blur(4px);
+    z-index:-1;
+    border-radius:12px;
+  }
+
   .brand{
     margin: 64px auto 10px;
     text-align: center;
     width: auto;
     margin-left: 0;
   }
-  .brand-line1, .brand-line2{ transform: none; }
+  .brand-line1, .brand-line2{ transform:none; }
   .brand-line1{ font-size: clamp(36px, 12vw, 60px); }
   .brand-line2{ font-size: clamp(38px, 13vw, 68px); }
 
-  .page-header{ margin-top: 92px; }      /* évite que le titre interne touche le haut */
-
-  /* 3) Lune + décors : on recentre la lune et on allège les éléments décoratifs */
   .moon-wrap{
     left: 50%;
     transform: translateX(-50%);
     width: min(64vw, 260px);
-    top: 24px;
-    opacity: .75;
+    top: 28px;
+    opacity: .85;
   }
 
-  /* Les gros décors gênent la lecture sur mobile : on les masque.
-     (si tu veux les garder, remplace display:none par opacity:.15) */
-  .deco-cards,
-  .deco-clouds-top,
-  .deco-clouds-bottom,
-  .deco-crystals{ display:none; }
-  .deco{ opacity:.12; }                   /* étoiles conservées mais très légères */
+  .deco-cards{ width:120px; top:70px; left:10px; opacity:.8; }
+  .deco-clouds-top{ width:200px; top:90px; right:0; opacity:.7; }
+  .deco-clouds-bottom{ width:180px; bottom:60px; left:10px; opacity:.8; }
+  .deco-crystals{ width:140px; bottom:80px; right:20px; opacity:.9; }
+  .deco-stars{ width:100px; bottom:40px; right:15px; opacity:.8; }
 
-  /* 4) Zones de texte : confort de lecture */
   .hero, .page{ padding: 22px 16px 48px; }
   .subtitle{ font-size: 18px; margin-top: 14px; }
   .prose, .contact p{ font-size: 18px; line-height: 1.85; }
   .prose-centered, .charte-centered{ max-width: 92%; }
 
-  /* 5) Boutons : un peu plus compacts, sans toucher au style desktop */
   .btn-group{ gap: 12px; }
-  .btn-primary{
-    font-size: 1.05rem;
-    padding: .95rem 1.3rem;
-  }
+  .btn-primary{ font-size: 1.05rem; padding: .95rem 1.3rem; }
 }
+
+img{ max-width:100%; height:auto; display:block }
+a{ color:inherit }
