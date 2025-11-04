@@ -1,0 +1,276 @@
+/* ========= Thème ========= */
+:root{
+  --bg:#080930;           /* fond nuit */
+  --gold:#F5DF4D;         /* jaune / doré */
+  --mauve:#80586D;        /* mauve titre */
+  --text:#F5DF4D;
+  --btn-bg:#F5DF4D;
+  --btn-text:#080930;
+  --maxw:1200px;
+}
+
+/* ========= Reset / base ========= */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+  font-family: "Garamond", Georgia, "Times New Roman", serif;
+  line-height:1.5;
+}
+@font-face{
+  font-family:"Blackadder ITC";
+  src: local("Blackadder ITC"),
+       url("../fonts/BlackadderITC.ttf") format("truetype");
+  font-display: swap;
+}
+.visually-hidden{
+  position:absolute !important;
+  clip: rect(1px,1px,1px,1px);
+  clip-path: inset(50%);
+  width:1px;height:1px; overflow:hidden; white-space:nowrap; border:0; padding:0; margin:-1px;
+}
+
+/* ========= HERO ========= */
+.hero{
+  position:relative;
+  min-height: 92vh;
+  max-width: var(--maxw);
+  margin-inline:auto;
+  padding: clamp(18px, 4vw, 48px);
+  display:block;
+  text-align:center;
+  z-index:2;
+}
+
+/* Lune haut-gauche derrière le titre */
+.moon-wrap{
+  position:absolute;
+  top: clamp(32px, 7vh, 120px);
+  left: clamp(28px, 7vw, 140px);
+  width: min(36vw, 360px);
+  z-index:0;
+  pointer-events:none;
+}
+.moon{
+  width:100%;
+  clip-path: circle(50% at 50% 50%);
+  filter: drop-shadow(0 0 16px rgba(245,223,77,.25));
+}
+
+/* Titre */
+.brand{
+  position: relative;
+  margin-top: clamp(44px, 12vh, 150px);
+  margin-bottom: .8rem;
+  font-family: "Blackadder ITC", "Segoe Script", "URW Chancery L", cursive;
+  color: var(--mauve);
+  text-shadow: 0 0 4px rgba(128,88,109,.35);
+  line-height: .9;
+  z-index:1;
+  text-align: left;
+  width: fit-content;
+  margin-left: clamp(38px, 16vw, 280px);
+}
+.brand-line1{
+  display:block;
+  font-size: clamp(38px, 7vw, 90px);
+  transform: translateX(-1%);
+}
+.brand-line2{
+  display:block;
+  font-size: clamp(40px, 7.5vw, 96px);
+  margin-top:.18em;
+  transform: translateX(13%);
+}
+
+/* Étoile après “Guidance” */
+.star-after {
+  display: inline-block;
+  width: 0.9em; /* plus petite */
+  margin-left: -0.25em;
+  vertical-align: middle;
+  transform: translateY(10%);
+  filter: drop-shadow(0 0 4px rgba(255,255,255,0.85));
+  animation: twinkle 2.5s infinite ease-in-out;
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 1; transform: translateY(10%) scale(1); }
+  50% { opacity: 0.4; transform: translateY(10%) scale(1.15); }
+}
+
+/* Sous-titre */
+.subtitle{
+  max-width: 60ch;
+  font-size: clamp(18px, 2.2vw, 24px);
+  margin: 1.2rem auto 0.9rem auto;
+  text-wrap: balance;
+}
+.emoji{ filter: drop-shadow(0 0 2px rgba(245,223,77,.4)); }
+
+/* Boutons */
+.btn-group{
+  display:flex;
+  flex-wrap:wrap;
+  gap: clamp(12px, 2vw, 18px);
+  justify-content:center;
+}
+.btn-primary{
+  display:inline-block;
+  margin-top: clamp(26px, 3.8vw, 34px);
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  text-decoration:none;
+  padding: 1rem 1.6rem;
+  border-radius: 999px;
+  font-weight:700;
+  letter-spacing:.2px;
+  box-shadow: 0 4px 14px rgba(245,223,77,.25), inset 0 -2px 0 rgba(0,0,0,.09);
+  transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
+}
+.btn-primary:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(245,223,77,.3), inset 0 -2px 0 rgba(0,0,0,.12);
+  filter: brightness(1.05);
+}
+.btn-alt{ box-shadow: 0 4px 14px rgba(245,223,77,.22), inset 0 -2px 0 rgba(0,0,0,.09); }
+
+/* ========= Décors ========= */
+.deco{
+  position:fixed;
+  z-index:-1;
+  pointer-events:none;
+}
+.deco-cards{
+  left: clamp(10px, 3vw, 40px);
+  top: clamp(40px, 8vh, 120px);
+  width:min(26vw, 240px);
+  transform: rotate(-8deg);
+}
+.deco-clouds-top{
+  right: clamp(8px, 2vw, 24px);
+  top: clamp(26px, 6vh, 90px);
+  width:min(36vw, 400px);
+}
+.deco-clouds-bottom{
+  left: clamp(8px, 2vw, 24px);
+  bottom: clamp(36px, 7vh, 100px);
+  width:min(28vw, 320px);
+  transform: scaleX(-1);
+  opacity:.95;
+}
+.deco-stars{
+  right: clamp(8px, 3vw, 36px);
+  bottom: clamp(30px, 6vh, 90px);
+  width:min(18vw, 180px);
+}
+.deco-crystals{
+  right: clamp(20px, 3.5vw, 60px);
+  bottom: clamp(42px, 8vh, 110px);
+  width: min(20vw, 200px);
+  filter: drop-shadow(0 0 10px rgba(245,223,77,.22));
+}
+
+/* ========= Section contact ========= */
+.contact{
+  position: relative;
+  z-index: 2;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 70px 8vw 90px;
+  color: var(--gold);
+  text-align:center;
+  border-top: 1px dashed rgba(245,223,77,.25);
+}
+.contact p{
+  max-width: 40ch;
+  margin: 0 auto;
+  font-size: clamp(15px, 1.6vw, 18px);
+  text-wrap: balance;
+  text-align: center;
+}
+
+/* ========= Charte ========= */
+.page{
+  position:relative;
+  min-height: 92vh;
+  max-width: var(--maxw);
+  margin-inline:auto;
+  padding: clamp(22px, 4vw, 48px);
+  z-index:2;
+  text-align:center;
+}
+.page-header{ margin-top: clamp(40px, 12vh, 140px); margin-bottom: clamp(18px, 3vh, 28px); }
+.page-title{
+  font-family:"Blackadder ITC","Segoe Script","URW Chancery L",cursive;
+  color: var(--mauve);
+  font-size: clamp(36px, 6.8vw, 78px);
+  line-height:.95;
+  text-shadow: 0 0 4px rgba(128,88,109,.35);
+}
+.page-sub{
+  display:block;
+  font-size: clamp(22px, 3.2vw, 36px);
+}
+
+.prose{
+  max-width: 68ch;
+  margin: 0 auto;
+  color: var(--gold);
+  text-align: justify;
+  font-size: clamp(14px, 1.6vw, 18px);
+  line-height: 1.6;
+}
+.charte{
+  counter-reset: c;
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+.charte li{
+  counter-increment: c;
+  margin: 0 0 10px 0;
+  text-align: justify;
+}
+.charte li::before{
+  content: counter(c) ". ";
+  color: var(--gold);
+  font-weight: 700;
+  margin-right: 6px;
+}
+
+/* ========= Footer ========= */
+.footer{
+  text-align:center;
+  padding: 20px 16px 40px;
+  color: rgba(245,223,77,.85);
+  font-size:.9rem;
+  border-top: 1px dashed rgba(245,223,77,.15);
+  position: relative;
+  z-index: 2;
+}
+
+/* ========= Responsive ========= */
+@media (max-width: 900px){
+  .moon-wrap{ width: min(44vw, 340px); left: clamp(18px, 6vw, 80px); top: clamp(18px, 6vh, 90px); }
+  .brand{ margin-left: clamp(26px, 14vw, 200px); }
+  .brand-line1{ transform: translateX(0%); }
+  .brand-line2{ transform: translateX(12%); }
+  .deco-clouds-bottom{ width:min(40vw, 300px) }
+  .deco-crystals{ width:min(34vw, 180px) }
+  .prose{ max-width: 90%; }
+}
+@media (max-width: 640px){
+  .brand-line1{ font-size: clamp(36px, 12vw, 60px); }
+  .brand-line2{ font-size: clamp(38px, 13vw, 68px); }
+  .moon-wrap{ width: min(52vw, 300px); left: clamp(10px, 6vw, 60px); }
+  .deco-cards{ width: 150px }
+  .deco-clouds-top{ width: 240px }
+  .deco-clouds-bottom{ width: 210px; bottom: 70px; }
+  .deco-stars{ width: 110px }
+  .deco-crystals{ width: 160px; bottom: 86px; }
+}
+img{ max-width:100%; height:auto; display:block }
+a{ color:inherit }

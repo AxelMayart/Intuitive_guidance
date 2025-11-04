@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>L’intuitive Guidance – Accueil</title>
+  <link rel="preload" href="fonts/BlackadderITC.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="css/styles.css" />
+  <meta name="description" content="Voyance et accompagnement spirituel et social avec bienveillance afin d’éclairer vos questionnements dans les différents domaines de votre vie." />
+</head>
+<body>
+  <!-- Décors -->
+  <img src="images/cards.png"  class="deco deco-cards"         alt="" aria-hidden="true">
+  <img src="images/clouds.png" class="deco deco-clouds-top"    alt="" aria-hidden="true">
+  <img src="images/clouds.png" class="deco deco-clouds-bottom" alt="" aria-hidden="true">
+  <img src="images/stars.png"  class="deco deco-stars"         alt="" aria-hidden="true">
+  <img src="images/crystals.png" class="deco deco-crystals"    alt="" aria-hidden="true">
+
+  <main class="hero">
+    <!-- Lune haut-gauche derrière le titre -->
+    <div class="moon-wrap" aria-hidden="true">
+      <img src="images/moon.png" class="moon" alt="Lune pleine">
+    </div>
+
+    <!-- Titre avec étoile -->
+    <h1 class="brand">
+      <span class="brand-line1">L’intuitive</span>
+      <span class="brand-line2">
+        Guidance
+        <img src="images/star-white.png" class="star-after" alt="" aria-hidden="true">
+      </span>
+    </h1>
+
+    <!-- Sous-titre -->
+    <p class="subtitle">
+      Voyance <span class="emoji" role="img" aria-label="cristal">🔮</span> et accompagnement<br>
+      spirituel et social avec bienveillance afin d’éclairer<br>
+      vos questionnements dans les différents domaines de votre vie
+    </p>
+
+    <!-- Boutons -->
+    <div class="cta">
+      <div class="btn-group">
+        <a href="#rendezvous" class="btn-primary">Prendre rendez-vous</a>
+        <a href="chartes-de-bienveillance.html" class="btn-primary btn-alt">Charte de bienveillance</a>
+      </div>
+    </div>
+  </main>
+
+  <section id="rendezvous" class="contact">
+    <h2 class="visually-hidden">Prendre rendez-vous</h2>
+    <p>
+      Écrivez-nous pour planifier une séance.<br>
+      (Remplacez cette section par votre formulaire de prise de rendez-vous ou un lien vers votre agenda.)
+    </p>
+  </section>
+
+  <footer class="footer">
+    <small>&copy; <span id="year"></span> L’intuitive Guidance — Tous droits réservés.</small>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
