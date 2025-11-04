@@ -7,39 +7,6 @@
   <link rel="preload" href="fonts/BlackadderITC.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="css/styles.css" />
   <meta name="description" content="Charte de Bienveillance : nos 10 engagements envers chaque consultant." />
-
-  <style>
-    /* 🌙 Tout le texte en blanc, sans changer la mise en page */
-    .prose {
-      color: #FFFFFF !important;
-      text-align: justify !important;
-      max-width: 68ch;
-      margin: 0 auto;
-      font-size: clamp(14px, 1.6vw, 18px);
-      line-height: 1.6;
-    }
-
-    .charte {
-      counter-reset: c;
-      list-style: none;
-      padding-left: 0;
-      margin: 0;
-    }
-
-    .charte li {
-      counter-increment: c;
-      margin: 0 0 10px 0;
-      text-align: justify;
-      color: #FFFFFF !important;
-    }
-
-    .charte li::before {
-      content: counter(c) ". ";
-      color: #FFFFFF !important; /* numéros blancs */
-      font-weight: 700;
-      margin-right: 6px;
-    }
-  </style>
 </head>
 <body>
   <!-- Décors -->
@@ -50,14 +17,15 @@
   <img src="images/crystals.png" class="deco deco-crystals" alt="" aria-hidden="true">
 
   <main class="page">
-    <!-- Titre de page -->
     <header class="page-header">
       <h1 class="page-title">Charte de Bienveillance</h1>
     </header>
 
-    <section class="prose">
+    <section class="prose prose-centered">
       <h2 class="visually-hidden">Mes 10 engagements</h2>
-      <ol class="charte">
+
+      <!-- Liste centrée visuellement mais texte aligné à gauche pour la lecture -->
+      <ol class="charte charte-centered">
         <li>Je t’accueille avec respect, sans jugement ni discrimination.</li>
         <li>Je pratique dans la bienveillance et ne cherche jamais à influencer tes choix.</li>
         <li>Je présente clairement la nature, la durée et le tarif de mes services.</li>
@@ -70,7 +38,7 @@
         <li>Je pratique avec authenticité, dans une intention sincère d’accompagnement et d’ouverture.</li>
       </ol>
 
-      <div class="btn-group" style="margin-top:32px">
+      <div class="btn-group" style="margin-top:34px;">
         <a href="index.html" class="btn-primary btn-alt">← Retour à l’accueil</a>
       </div>
     </section>
