@@ -326,3 +326,33 @@ body{
   .btn-group{ gap: 12px; }
   .btn-primary{ font-size: 1.05rem; padding: .95rem 1.3rem; }
 }
+/* --- Correctif mobile : lune au-dessus du texte, sans chevauchement --- */
+@media (max-width: 640px){
+  /* La lune n'est plus en absolute : elle passe dans le flux au-dessus du titre */
+  .moon-wrap{
+    position: relative;   /* était absolute */
+    left: auto;
+    top: auto;
+    transform: none;
+    width: min(52vw, 230px);
+    margin: 14px auto 6px;  /* centrée et au-dessus du titre */
+    z-index: 0;             /* sous le texte si jamais */
+    opacity: .9;
+  }
+  .moon{ display:block; margin: 0 auto; }
+
+  /* Le titre remonte (plus besoin de gros espace) et ne se superpose plus */
+  .brand{
+    margin-top: 12px;       /* avant : ~180px, devenu inutile */
+    margin-bottom: 12px;
+    text-align: center;
+    margin-left: 0;
+    width: auto;
+    position: relative;
+    z-index: 2;
+  }
+  .brand-line1, .brand-line2{ transform:none; }
+
+  /* Un peu d’espace avant le paragraphe d’introduction */
+  .subtitle{ margin-top: 12px; }
+}
