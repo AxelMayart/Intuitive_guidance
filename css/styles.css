@@ -3,7 +3,7 @@
   --bg:#080930;           /* fond nuit */
   --gold:#F5DF4D;         /* jaune / doré */
   --mauve:#80586D;        /* mauve titre */
-  --text:#FFFFFF;          /* texte blanc */
+  --text:#FFFFFF;         /* texte blanc */
   --btn-bg:#F5DF4D;
   --btn-text:#080930;
   --maxw:1200px;
@@ -60,7 +60,7 @@ body{
   filter: drop-shadow(0 0 16px rgba(245,223,77,.25));
 }
 
-/* Titre */
+/* Titre marque */
 .brand{
   position: relative;
   margin-top: clamp(44px, 12vh, 150px);
@@ -173,7 +173,7 @@ body{
   filter: drop-shadow(0 0 10px rgba(245,223,77,.22));
 }
 
-/* ========= Section contact ========= */
+/* ========= Section contact (accueil) ========= */
 .contact{
   position: relative;
   z-index: 2;
@@ -185,15 +185,120 @@ body{
   border-top: 1px dashed rgba(245,223,77,.25);
 }
 .contact p{
-  max-width: 40ch;
+  max-width: 56ch;
   margin: 0 auto;
-  font-size: clamp(15px, 1.6vw, 18px);
+  font-size: clamp(16px, 1.7vw, 19px);
   text-wrap: balance;
   text-align: center;
 }
 
-/* ========= Charte ========= */
+/* ========= Pages internes (charte / rendez-vous) ========= */
 .page{
   position:relative;
   min-height: 92vh;
-  max-width: var(--
+  max-width: var(--maxw);
+  margin-inline:auto;
+  padding: clamp(22px, 4vw, 48px);
+  z-index:2;
+  text-align:center;
+}
+.page-header{ margin-top: clamp(40px, 12vh, 140px); margin-bottom: clamp(18px, 3vh, 28px); }
+.page-title{
+  font-family:"Blackadder ITC","Segoe Script","URW Chancery L",cursive;
+  color: var(--mauve);
+  font-size: clamp(36px, 6.8vw, 78px);
+  line-height:.95;
+  text-shadow: 0 0 4px rgba(128,88,109,.35);
+}
+.page-sub{
+  display:block;
+  font-size: clamp(22px, 3.2vw, 36px);
+}
+
+/* Corps de page lisible et centré */
+.prose{
+  color: var(--text);
+  font-size: clamp(16px, 1.9vw, 20px);
+  line-height: 1.75;
+  text-wrap: pretty;
+}
+.prose-centered{
+  max-width: 78ch;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Liste de la charte : bloc centré, texte à gauche pour la lecture */
+.charte{
+  counter-reset: c;
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+.charte-centered{
+  display: inline-block;
+  text-align: left;
+  max-width: 78ch;
+}
+.charte li{
+  counter-increment: c;
+  margin: 0 0 12px 0;
+}
+.charte li::before{
+  content: counter(c) ". ";
+  color: var(--text);     /* numéros blancs */
+  font-weight: 700;
+  margin-right: 6px;
+}
+
+/* Mise en évidence des contacts */
+.contact-highlight{
+  font-size: clamp(18px, 2.2vw, 24px);
+  font-weight: 700;
+  margin: .4rem 0 1.2rem 0;
+}
+.prose a{
+  color: var(--text);
+  text-decoration: underline;
+}
+.prose a:hover{ color: var(--gold); }
+
+/* ========= Footer ========= */
+.footer{
+  text-align:center;
+  padding: 20px 16px 40px;
+  color: rgba(245,223,77,.85);
+  font-size:.9rem;
+  border-top: 1px dashed rgba(245,223,77,.15);
+  position: relative;
+  z-index: 2;
+}
+
+/* ========= Responsive ========= */
+@media (max-width: 900px){
+  .moon-wrap{ width: min(44vw, 340px); left: clamp(18px, 6vw, 80px); top: clamp(18px, 6vh, 90px); }
+  .brand{ margin-left: clamp(26px, 14vw, 200px); }
+  .brand-line1{ transform: translateX(0%); }
+  .brand-line2{ transform: translateX(12%); }
+  .deco-clouds-bottom{ width:min(40vw, 300px) }
+  .deco-crystals{ width:min(34vw, 180px) }
+  .prose-centered{ max-width: 86%; }
+}
+
+@media (max-width: 640px){
+  .brand-line1{ font-size: clamp(36px, 12vw, 60px); }
+  .brand-line2{ font-size: clamp(38px, 13vw, 68px); }
+  .moon-wrap{ width: min(52vw, 300px); left: clamp(10px, 6vw, 60px); }
+  .deco-cards{ width: 150px }
+  .deco-clouds-top{ width: 240px }
+  .deco-clouds-bottom{ width: 210px; bottom: 70px; }
+  .deco-stars{ width: 110px }
+  .deco-crystals{ width: 160px; bottom: 86px; }
+
+  /* Lecture confortable sur mobile */
+  .prose{ font-size: 18px; line-height: 1.85; }
+  .prose-centered{ max-width: 92%; }
+  .charte li{ margin-bottom: 14px; }
+}
+img{ max-width:100%; height:auto; display:block }
+a{ color:inherit }
