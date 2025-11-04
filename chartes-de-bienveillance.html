@@ -9,9 +9,35 @@
   <meta name="description" content="Charte de Bienveillance : nos 10 engagements envers chaque consultant." />
 
   <style>
-    /* 🌙 Ne change rien d’autre, juste les numéros en blanc */
+    /* 🌙 Tout le texte en blanc, sans changer la mise en page */
+    .prose {
+      color: #FFFFFF !important;
+      text-align: justify !important;
+      max-width: 68ch;
+      margin: 0 auto;
+      font-size: clamp(14px, 1.6vw, 18px);
+      line-height: 1.6;
+    }
+
+    .charte {
+      counter-reset: c;
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+
+    .charte li {
+      counter-increment: c;
+      margin: 0 0 10px 0;
+      text-align: justify;
+      color: #FFFFFF !important;
+    }
+
     .charte li::before {
+      content: counter(c) ". ";
       color: #FFFFFF !important; /* numéros blancs */
+      font-weight: 700;
+      margin-right: 6px;
     }
   </style>
 </head>
