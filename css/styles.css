@@ -261,8 +261,7 @@ body{
   position: relative;
   z-index: 2;
 }
-
-/* ========= Mobile amélioré avec dark overlay ========= */
+/* ========= Mobile amélioré avec dark overlay + lune repositionnée ========= */
 @media (max-width: 640px){
 
   :root{ --text:#ffffff; }
@@ -274,7 +273,7 @@ body{
     text-shadow: 0 1px 2px rgba(0,0,0,.35);
   }
 
-  /* Voile doux pour lecture */
+  /* Voile doux sous le texte */
   .hero::before, .page::before, .contact::before{
     content:"";
     position:absolute;
@@ -285,38 +284,45 @@ body{
     border-radius:12px;
   }
 
+  /* === Lune repositionnée au-dessus === */
+  .moon-wrap{
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(52vw, 240px);
+    top: 0;                  /* collée en haut */
+    margin-top: 12px;
+    opacity: .9;
+    z-index: 1;              /* passe au-dessus du fond mais sous le texte */
+  }
+
+  /* Marque et titre centrés + marge ajustée pour libérer la lune */
   .brand{
-    margin: 64px auto 10px;
+    margin-top: 180px;       /* éloigne le titre de la lune */
+    margin-bottom: 12px;
     text-align: center;
     width: auto;
     margin-left: 0;
+    position: relative;
+    z-index: 2;
   }
   .brand-line1, .brand-line2{ transform:none; }
   .brand-line1{ font-size: clamp(36px, 12vw, 60px); }
   .brand-line2{ font-size: clamp(38px, 13vw, 68px); }
 
-  .moon-wrap{
-    left: 50%;
-    transform: translateX(-50%);
-    width: min(64vw, 260px);
-    top: 28px;
-    opacity: .85;
-  }
-
-  .deco-cards{ width:120px; top:70px; left:10px; opacity:.8; }
-  .deco-clouds-top{ width:200px; top:90px; right:0; opacity:.7; }
-  .deco-clouds-bottom{ width:180px; bottom:60px; left:10px; opacity:.8; }
+  /* Décors conservés et redimensionnés harmonieusement */
+  .deco-cards{ width:110px; top:80px; left:8px; opacity:.8; }
+  .deco-clouds-top{ width:200px; top:100px; right:0; opacity:.75; }
+  .deco-clouds-bottom{ width:180px; bottom:60px; left:10px; opacity:.85; }
   .deco-crystals{ width:140px; bottom:80px; right:20px; opacity:.9; }
   .deco-stars{ width:100px; bottom:40px; right:15px; opacity:.8; }
 
+  /* Textes et contenu */
   .hero, .page{ padding: 22px 16px 48px; }
-  .subtitle{ font-size: 18px; margin-top: 14px; }
+  .subtitle{ font-size: 18px; margin-top: 16px; }
   .prose, .contact p{ font-size: 18px; line-height: 1.85; }
   .prose-centered, .charte-centered{ max-width: 92%; }
 
+  /* Boutons */
   .btn-group{ gap: 12px; }
   .btn-primary{ font-size: 1.05rem; padding: .95rem 1.3rem; }
 }
-
-img{ max-width:100%; height:auto; display:block }
-a{ color:inherit }
