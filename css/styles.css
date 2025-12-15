@@ -1,279 +1,426 @@
-/* ===============================
-   BASE
-================================ */
-
-*,
-*::before,
-*::after{
-  box-sizing: border-box;
+/* ========= Thème ========= */
+:root{
+  --bg:#080930;           /* fond nuit */
+  --gold:#F5DF4D;         /* jaune / doré */
+  --mauve:#80586D;        /* mauve titre */
+  --text:#FFFFFF;         /* texte blanc */
+  --btn-bg:#F5DF4D;
+  --btn-text:#080930;
+  --maxw:1200px;
 }
 
-html, body{
-  margin: 0;
-  padding: 0;
-}
-
+/* ========= Reset / base ========= */
+*{box-sizing:border-box}
+html,body{height:100%}
 body{
-  font-family: Georgia, "Times New Roman", serif;
-  background: radial-gradient(circle at top, #14144a 0%, #070724 65%);
-  color: #ffffff;
-  min-height: 100vh;
-  overflow-x: hidden;
+  margin:0;
+  background: var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+  font-family: "Garamond", Georgia, "Times New Roman", serif;
+  line-height:1.5;
 }
 
-/* ===============================
-   DECORS
-================================ */
-
-.deco{
-  position: fixed;
-  pointer-events: none;
-  z-index: 0;
+@font-face{
+  font-family:"Blackadder ITC";
+  src: local("Blackadder ITC"),
+       url("../fonts/BlackadderITC.ttf") format("truetype");
+  font-display: swap;
 }
 
-.deco-cards{
-  top: 6%;
-  left: 4%;
-  width: 140px;
+.visually-hidden{
+  position:absolute !important;
+  clip: rect(1px,1px,1px,1px);
+  clip-path: inset(50%);
+  width:1px;height:1px; overflow:hidden; white-space:nowrap; border:0; padding:0; margin:-1px;
 }
 
-.deco-clouds-top{
-  top: 12%;
-  right: 3%;
-  width: 200px;
-}
-
-.deco-clouds-bottom{
-  bottom: 8%;
-  left: 3%;
-  width: 220px;
-}
-
-.deco-crystals{
-  bottom: 10%;
-  right: 3%;
-  width: 150px;
-}
-
-.deco-stars{
-  top: 0;
-  left: 0;
-  width: 100%;
-  opacity: .6;
-}
-
-/* ===============================
-   HERO
-================================ */
-
+/* ========= HERO ========= */
 .hero{
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  padding: 120px 20px 80px;
+  position:relative;
+  min-height: 92vh;
+  max-width: var(--maxw);
+  margin-inline:auto;
+  padding: clamp(18px, 4vw, 48px);
+  display:block;
+  text-align:center;
+  z-index:2;
 }
 
-/* Lune */
+/* Lune haut-gauche derrière le titre */
 .moon-wrap{
-  display: flex;
-  justify-content: center;
-  margin-bottom: 10px;
+  position:absolute;
+  top: clamp(32px, 7vh, 120px);
+  left: clamp(28px, 7vw, 140px);
+  width: min(36vw, 360px);
+  z-index:0;
+  pointer-events:none;
 }
 
 .moon{
-  width: 180px;
-  height: auto;
+  width:100%;
   border-radius: 50%;
-  box-shadow:
-    0 0 40px rgba(255, 244, 200, .35);
+  /* Bord doux pour éviter l’effet “rond moche” sur certains écrans */
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 64%, transparent 76%);
+  mask-image: radial-gradient(circle at 50% 50%, #000 64%, transparent 76%);
+  filter: drop-shadow(0 0 16px rgba(245,223,77,.25));
 }
 
-/* ===============================
-   TITRES
-================================ */
-
-@font-face{
-  font-family: "Blackadder";
-  src: url("../fonts/BlackadderITC.ttf") format("truetype");
-}
-
+/* Titre marque */
 .brand{
-  margin: 0;
-  line-height: 1.05;
+  position: relative;
+  margin-top: clamp(44px, 12vh, 150px);
+  margin-bottom: .8rem;
+  font-family: "Blackadder ITC", "Segoe Script", "URW Chancery L", cursive;
+  color: var(--mauve);
+  text-shadow: 0 0 4px rgba(128,88,109,.35);
+  line-height: .9;
+  z-index:1;
+  text-align: left;
+  width: fit-content;
+  margin-left: clamp(38px, 16vw, 280px);
 }
 
 .brand-line1{
-  display: block;
-  font-family: "Blackadder", cursive;
-  font-size: 64px;
-  color: #80586D;
+  display:block;
+  font-size: clamp(38px, 7vw, 90px);
+  transform: translateX(-1%);
 }
 
 .brand-line2{
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-family: "Blackadder", cursive;
-  font-size: 64px;
-  color: #80586D;
+  display:block;
+  font-size: clamp(40px, 7.5vw, 96px);
+  margin-top:.18em;
+  transform: translateX(13%);
 }
 
-.star-after{
-  width: 28px;
-  opacity: .9;
+/* Étoile après “Guidance” */
+.star-after {
+  display: inline-block;
+  width: 0.9em;
+  margin-left: -0.25em;
+  vertical-align: middle;
+  transform: translateY(10%);
+  filter: drop-shadow(0 0 4px rgba(255,255,255,0.85));
+  animation: twinkle 2.5s infinite ease-in-out;
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 1; transform: translateY(10%) scale(1); }
+  50% { opacity: 0.4; transform: translateY(10%) scale(1.15); }
 }
 
-/* ===============================
-   TEXTE
-================================ */
-
+/* Sous-titre */
 .subtitle{
-  max-width: 760px;
-  margin: 28px auto 40px;
-  font-size: 18px;
-  line-height: 1.7;
+  max-width: 60ch;
+  font-size: clamp(18px, 2.2vw, 24px);
+  margin: 1.2rem auto 0.9rem auto;
+  text-wrap: balance;
 }
+.emoji{ filter: drop-shadow(0 0 2px rgba(245,223,77,.4)); }
 
-/* ===============================
-   BOUTONS
-================================ */
-
+/* Boutons */
 .btn-group{
-  display: flex;
-  justify-content: center;
-  gap: 22px;
-  flex-wrap: wrap;
+  display:flex;
+  flex-wrap:wrap;
+  gap: clamp(12px, 2vw, 18px);
+  justify-content:center;
 }
-
 .btn-primary{
-  background: #f3e25c;
-  color: #0b0b2e;
-  padding: 16px 34px;
+  display:inline-block;
+  margin-top: clamp(26px, 3.8vw, 34px);
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  text-decoration:none;
+  padding: 1rem 1.6rem;
   border-radius: 999px;
-  text-decoration: none;
-  font-weight: bold;
-  box-shadow: 0 6px 18px rgba(0,0,0,.35);
-  transition: transform .2s ease, box-shadow .2s ease;
+  font-weight:700;
+  letter-spacing:.2px;
+  box-shadow: 0 4px 14px rgba(245,223,77,.25), inset 0 -2px 0 rgba(0,0,0,.09);
+  transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
 }
-
 .btn-primary:hover{
   transform: translateY(-2px);
-  box-shadow: 0 10px 22px rgba(0,0,0,.45);
+  box-shadow: 0 10px 22px rgba(245,223,77,.3), inset 0 -2px 0 rgba(0,0,0,.12);
+  filter: brightness(1.05);
+}
+.btn-alt{ box-shadow: 0 4px 14px rgba(245,223,77,.22), inset 0 -2px 0 rgba(0,0,0,.09); }
+
+/* ========= Décors ========= */
+/* IMPORTANT : agrandis + supprime effet “carré” des PNG */
+.deco{
+  position:fixed;
+  z-index:-1;
+  pointer-events:none;
+
+  /* Empêche toute bordure/fond accidentel */
+  background: transparent !important;
+  border: 0 !important;
+  outline: 0 !important;
+
+  /* “Détache” les PNG du fond et masque les bords carrés visuels */
+  filter: drop-shadow(0 0 10px rgba(0,0,0,.35)) drop-shadow(0 0 16px rgba(245,223,77,.12));
+  transform: translateZ(0); /* rend plus stable sur certains navigateurs */
 }
 
-.btn-alt{
-  background: #f7e87b;
+/* Cartes : un peu plus grandes */
+.deco-cards{
+  left: clamp(10px, 3vw, 40px);
+  top: clamp(40px, 8vh, 120px);
+  width:min(30vw, 300px);
+  transform: rotate(-8deg);
+  opacity:.95;
 }
 
-/* ===============================
-   CONTACT / RENDEZ-VOUS
-================================ */
+/* Nuages haut : plus grands */
+.deco-clouds-top{
+  right: clamp(8px, 2vw, 24px);
+  top: clamp(26px, 6vh, 90px);
+  width:min(44vw, 520px);
+  opacity:.95;
+}
 
+/* Nuages bas */
+.deco-clouds-bottom{
+  left: clamp(8px, 2vw, 24px);
+  bottom: clamp(36px, 7vh, 100px);
+  width:min(36vw, 420px);
+  transform: scaleX(-1);
+  opacity:.95;
+}
+
+/* Étoiles : si ton stars.png est une image “pleine page”, on l’étire */
+.deco-stars{
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity:.55;
+  filter: none; /* on évite de trop flouter l’arrière-plan */
+}
+
+/* Cristaux */
+.deco-crystals{
+  right: clamp(20px, 3.5vw, 60px);
+  bottom: clamp(42px, 8vh, 110px);
+  width: min(26vw, 260px);
+  opacity:.95;
+}
+
+/* ========= Section contact ========= */
 .contact{
   position: relative;
-  z-index: 1;
-  text-align: center;
-  padding: 80px 20px 60px;
+  z-index: 2;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 70px 8vw 90px;
+  color: var(--text);
+  text-align:center;
+  border-top: 1px dashed rgba(245,223,77,.25);
 }
-
 .contact p{
-  max-width: 820px;
-  margin: 0 auto 40px;
-  font-size: 20px;
-  line-height: 1.7;
+  max-width: 56ch;
+  margin: 0 auto 24px;
+  font-size: clamp(16px, 1.7vw, 19px);
+  text-wrap: balance;
+  text-align: center;
 }
 
-/* ===============================
-   GALERIE PHOTOS
-================================ */
-
+/* ========= Galerie photos (accueil) ========= */
 .photo-showcase{
+  margin-top: 34px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 34px;
+  gap: 22px;
 }
 
-/* Photo principale */
+.photo-main,
+.photo-thumb{
+  display:block;
+  max-width:100%;
+  height:auto;
+}
+
 .photo-main{
-  width: 260px;
+  width: min(280px, 78vw);
   aspect-ratio: 1 / 1;
   object-fit: cover;
-  border-radius: 50%;
-  filter: grayscale(100%);
+  border-radius: 999px;
+  filter: grayscale(100%) contrast(1.05);
   box-shadow:
-    0 0 0 3px rgba(245,223,77,.25),
-    0 0 30px rgba(245,223,77,.22),
-    0 12px 30px rgba(0,0,0,.45);
+    0 0 0 3px rgba(245,223,77,.22),
+    0 10px 30px rgba(0,0,0,.35),
+    0 0 26px rgba(245,223,77,.18);
 }
 
-/* Photos secondaires */
 .photo-secondary{
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 26px;
-  max-width: 900px;
-  width: 100%;
+  gap: 16px;
+  width: min(780px, 92%);
 }
 
 .photo-thumb{
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
-  border-radius: 26px;
+  border-radius: 18px;
   box-shadow:
-    0 0 0 2px rgba(245,223,77,.18),
-    0 14px 30px rgba(0,0,0,.4);
+    0 0 0 2px rgba(245,223,77,.14),
+    0 12px 28px rgba(0,0,0,.32);
+  transition: transform .25s ease, filter .25s ease, box-shadow .25s ease;
 }
 
-/* ===============================
-   FOOTER
-================================ */
+.photo-thumb:hover{
+  transform: translateY(-2px);
+  filter: brightness(1.03);
+  box-shadow:
+    0 0 0 2px rgba(245,223,77,.22),
+    0 18px 34px rgba(0,0,0,.38);
+}
 
-.footer{
+/* ========= Pages internes ========= */
+.page{
+  position:relative;
+  min-height: 92vh;
+  max-width: var(--maxw);
+  margin-inline:auto;
+  padding: clamp(22px, 4vw, 48px);
+  z-index:2;
+  text-align:center;
+}
+.page-header{
+  margin-top: clamp(40px, 12vh, 140px);
+  margin-bottom: clamp(18px, 3vh, 28px);
+}
+.page-title{
+  font-family:"Blackadder ITC","Segoe Script","URW Chancery L",cursive;
+  color: var(--mauve);
+  font-size: clamp(36px, 6.8vw, 78px);
+  line-height:.95;
+  text-shadow: 0 0 4px rgba(128,88,109,.35);
+}
+.page-sub{
+  display:block;
+  font-size: clamp(22px, 3.2vw, 36px);
+}
+
+.prose{
+  color: var(--text);
+  font-size: clamp(16px, 1.9vw, 20px);
+  line-height: 1.75;
+  text-wrap: pretty;
+}
+.prose-centered{
+  max-width: 78ch;
+  margin: 0 auto;
   text-align: center;
-  padding: 50px 20px 40px;
-  font-size: 14px;
-  color: #f3e25c;
 }
 
-/* ===============================
-   MOBILE
-================================ */
+.prose a{
+  color: var(--text);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
 
-@media (max-width: 768px){
+.contact-highlight{
+  font-size: clamp(18px, 2.2vw, 22px);
+  margin: 14px 0;
+}
 
-  .hero{
-    padding-top: 90px;
+/* Liste charte */
+.charte{
+  counter-reset: c;
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+.charte-centered{
+  display: inline-block;
+  text-align: left;
+  max-width: 78ch;
+}
+.charte li{
+  counter-increment: c;
+  margin: 0 0 12px 0;
+}
+.charte li::before{
+  content: counter(c) ". ";
+  color: var(--text);
+  font-weight: 700;
+  margin-right: 6px;
+}
+
+/* ========= Footer ========= */
+.footer{
+  text-align:center;
+  padding: 20px 16px 40px;
+  color: rgba(245,223,77,.85);
+  font-size:.9rem;
+  border-top: 1px dashed rgba(245,223,77,.15);
+  position: relative;
+  z-index: 2;
+}
+
+/* ========= Mobile ========= */
+@media (max-width: 640px){
+  :root{ --text:#ffffff; }
+
+  body, .subtitle, .prose, .contact, .contact p,
+  .page, .page-sub, .charte li{ color:#ffffff; }
+
+  .charte li::before{ color:#ffffff; }
+
+  .prose, .contact p, .subtitle, .charte li{
+    text-shadow: 0 1px 2px rgba(0,0,0,.35);
   }
 
-  .brand-line1,
-  .brand-line2{
-    font-size: 44px;
+  /* Lune : on la met au-dessus du titre pour éviter tout chevauchement */
+  .moon-wrap{
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    width: min(52vw, 230px);
+    margin: 14px auto 6px;
+    z-index: 0;
+    opacity: .95;
   }
+  .moon{ display:block; margin: 0 auto; }
 
-  .moon{
-    width: 140px;
+  /* Marque centrée */
+  .brand{
+    margin-top: 12px;
+    margin-bottom: 12px;
+    text-align: center;
+    width: auto;
+    margin-left: 0;
+    position: relative;
+    z-index: 2;
   }
+  .brand-line1, .brand-line2{ transform:none; }
+  .brand-line1{ font-size: clamp(36px, 12vw, 60px); }
+  .brand-line2{ font-size: clamp(38px, 13vw, 68px); }
 
-  .subtitle{
-    font-size: 16px;
-  }
+  /* Décors : plus présents sur mobile */
+  .deco-cards{ width:130px; top:70px; left:8px; opacity:.85; }
+  .deco-clouds-top{ width:240px; top:90px; right:0; opacity:.80; }
+  .deco-clouds-bottom{ width:220px; bottom:60px; left:10px; opacity:.88; }
+  .deco-crystals{ width:170px; bottom:70px; right:14px; opacity:.92; }
+  .deco-stars{ opacity:.45; }
 
-  .contact p{
-    font-size: 18px;
-  }
+  .hero, .page{ padding: 22px 16px 48px; }
+  .subtitle{ font-size: 18px; margin-top: 12px; }
 
-  .photo-main{
-    width: 220px;
-  }
-
+  /* Galerie : empile en colonne */
+  .photo-showcase{ margin-top: 24px; gap: 18px; }
+  .photo-main{ width: min(240px, 76vw); }
   .photo-secondary{
     grid-template-columns: 1fr;
-    gap: 22px;
+    width: min(520px, 92%);
   }
+  .photo-thumb{ border-radius: 16px; aspect-ratio: 16 / 10; }
 
-  .btn-primary{
-    padding: 14px 28px;
-  }
+  .btn-group{ gap: 12px; }
+  .btn-primary{ font-size: 1.05rem; padding: .95rem 1.3rem; }
 }
