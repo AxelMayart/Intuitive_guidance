@@ -1,96 +1,67 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>L’intuitive Guidance</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Feuille de style -->
-  <link rel="stylesheet" href="css/styles.css">
-
-  <!-- SEO -->
-  <meta name="description" content="Voyance et accompagnement spirituel et social avec bienveillance afin d’éclairer vos questionnements dans les différents domaines de votre vie.">
+  <link rel="stylesheet" href="css/styles.css" />
+  <meta name="description" content="Voyance et accompagnement spirituel et social avec bienveillance afin d’éclairer vos questionnements dans les différents domaines de votre vie." />
 </head>
 
 <body>
 
-  <!-- ===== DÉCORS ARRIÈRE-PLAN ===== -->
-  <img src="images/stars.png" class="deco deco-stars" alt="">
-  <img src="images/cards.png" class="deco deco-cards" alt="">
-  <img src="images/clouds.png" class="deco deco-clouds-top" alt="">
-  <img src="images/clouds.png" class="deco deco-clouds-bottom" alt="">
-  <img src="images/crystals.png" class="deco deco-crystals" alt="">
+  <!-- DÉCORS -->
+  <img src="images/stars.png" class="deco deco-stars" alt="" aria-hidden="true">
+  <img src="images/cards.png" class="deco deco-cards" alt="" aria-hidden="true">
+  <img src="images/clouds.png" class="deco deco-clouds-top" alt="" aria-hidden="true">
+  <img src="images/clouds.png" class="deco deco-clouds-bottom" alt="" aria-hidden="true">
+  <img src="images/crystals.png" class="deco deco-crystals" alt="" aria-hidden="true">
 
-  <!-- ===== HERO ===== -->
-  <header class="hero">
+  <!-- CONTENU -->
+  <main class="hero">
 
-    <!-- Lune -->
-    <div class="moon-wrap">
-      <img src="images/moon.png" alt="Lune pleine" class="moon">
-    </div>
+    <!-- LUNE (à gauche du titre) -->
+    <img src="images/moon.png" class="moon" alt="Lune pleine">
 
-    <!-- Titre -->
     <h1 class="brand">
       <span class="brand-line1">L’intuitive</span>
       <span class="brand-line2">
         Guidance
-        <img src="images/star-white.png" class="star-after" alt="">
+        <img src="images/star-white.png" class="star-after" alt="" aria-hidden="true">
       </span>
     </h1>
 
-    <!-- Texte principal -->
     <p class="subtitle">
-      Voyance <span class="emoji">🔮</span> et accompagnement<br>
+      Voyance <span class="emoji" aria-hidden="true">🔮</span> et accompagnement<br>
       spirituel et social avec bienveillance afin d’éclairer<br>
       vos questionnements dans les différents domaines de votre vie
     </p>
 
-    <!-- Boutons -->
     <div class="btn-group">
-      <a href="rendez-vous.html" class="btn-primary">Prendre rendez-vous</a>
-      <a href="chartes-de-bienveillance.html" class="btn-primary btn-alt">Charte de bienveillance</a>
-      <a href="avis.html" class="btn-primary btn-alt">Avis</a>
+      <a class="btn" href="rendez-vous.html">Prendre rendez-vous</a>
+      <a class="btn" href="chartes-de-bienveillance.html">Charte de bienveillance</a>
+      <a class="btn" href="avis.html">Avis</a>
     </div>
 
-  </header>
+  </main>
 
-  <!-- ===== SECTION RENDEZ-VOUS + PHOTOS ===== -->
+  <!-- SECTION BAS (texte + photos si tu veux les garder) -->
   <section class="contact">
-
     <p>
       Je vous reçois sur rendez-vous en vidéoconférence, du lundi au vendredi,
       de 9h30 à 14h et de 19h à 21h, le samedi de 10h à 12h30.
     </p>
 
-    <!-- Galerie photos -->
     <div class="photo-showcase">
-
-      <!-- Portrait -->
-      <img
-        src="images/photo-marjorie.png"
-        alt="Portrait en noir et blanc"
-        class="photo-main"
-      >
-
-      <!-- Autres photos -->
+      <img src="images/photo-marjorie.png" class="photo-main" alt="Portrait en noir et blanc">
       <div class="photo-secondary">
-        <img
-          src="images/photo-cartes.png"
-          alt="Exemple de tirage de cartes"
-          class="photo-thumb"
-        >
-        <img
-          src="images/photo-lumière.png"
-          alt="Ambiance lumineuse et énergétique"
-          class="photo-thumb"
-        >
+        <img src="images/photo-cartes.png" class="photo-thumb" alt="Exemple de tirage de cartes">
+        <img src="images/photo-lumière.png" class="photo-thumb" alt="Ambiance lumineuse et énergétique">
       </div>
-
     </div>
-
   </section>
 
-  <!-- ===== FOOTER ===== -->
   <footer class="footer">
     © 2025 L’intuitive Guidance — Tous droits réservés.
   </footer>
