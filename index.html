@@ -1,111 +1,446 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>L’intuitive Guidance – Accueil</title>
+/* ========= Thème ========= */
+:root{
+  --bg:#080930;
+  --gold:#F5DF4D;
+  --mauve:#80586D;
+  --text:#FFFFFF;
+  --btn-bg:#F5DF4D;
+  --btn-text:#080930;
+  --maxw:1200px;
+}
 
-  <link rel="preload" href="fonts/BlackadderITC.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="stylesheet" href="css/styles.css" />
+/* ========= Reset / base ========= */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  background: var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+  font-family: "Garamond", Georgia, "Times New Roman", serif;
+  line-height:1.5;
+  position: relative;
+}
 
-  <meta name="description"
-        content="Voyance et accompagnement spirituel et social avec bienveillance afin d’éclairer vos questionnements dans les différents domaines de votre vie." />
-</head>
+@font-face{
+  font-family:"Blackadder ITC";
+  src: local("Blackadder ITC"),
+       url("../fonts/BlackadderITC.ttf") format("truetype");
+  font-display: swap;
+}
 
-<body>
+.visually-hidden{
+  position:absolute !important;
+  clip: rect(1px,1px,1px,1px);
+  clip-path: inset(50%);
+  width:1px;height:1px; overflow:hidden; white-space:nowrap; border:0; padding:0; margin:-1px;
+}
 
-  <!-- Décors -->
-  <img src="images/cards.png" class="deco deco-cards" alt="" aria-hidden="true">
-  <img src="images/clouds.png" class="deco deco-clouds-top" alt="" aria-hidden="true">
-  <img src="images/clouds.png" class="deco deco-clouds-bottom" alt="" aria-hidden="true">
-  <img src="images/stars.png" class="deco deco-stars" alt="" aria-hidden="true">
-  <img src="images/crystals.png" class="deco deco-crystals" alt="" aria-hidden="true">
+/* ========= HERO ========= */
+.hero{
+  position:relative;
+  min-height: 92vh;
+  max-width: var(--maxw);
+  margin-inline:auto;
+  padding: clamp(18px, 4vw, 48px);
+  display:block;
+  text-align:center;
+  z-index:2;
+}
 
-  <!-- HERO -->
-  <main class="hero">
+/* Lune */
+.moon-wrap{
+  position:absolute;
+  top: clamp(32px, 7vh, 120px);
+  left: clamp(28px, 7vw, 140px);
+  width: min(36vw, 360px);
+  z-index:0;
+  pointer-events:none;
+}
+.moon{
+  width:100%;
+  border-radius: 50%;
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 64%, transparent 76%);
+  mask-image: radial-gradient(circle at 50% 50%, #000 64%, transparent 76%);
+  filter: drop-shadow(0 0 16px rgba(245,223,77,.25));
+}
 
-    <div class="moon-wrap" aria-hidden="true">
-      <img src="images/moon.png" class="moon" alt="Lune pleine">
-    </div>
+/* Titre marque */
+.brand{
+  position: relative;
+  margin-top: clamp(44px, 12vh, 150px);
+  margin-bottom: .8rem;
+  font-family: "Blackadder ITC", "Segoe Script", "URW Chancery L", cursive;
+  color: var(--mauve);
+  text-shadow: 0 0 4px rgba(128,88,109,.35);
+  line-height: .9;
+  z-index:1;
+  text-align: left;
+  width: fit-content;
+  margin-left: clamp(38px, 16vw, 280px);
+}
+.brand-line1{
+  display:block;
+  font-size: clamp(38px, 7vw, 90px);
+  transform: translateX(-1%);
+}
+.brand-line2{
+  display:block;
+  font-size: clamp(40px, 7.5vw, 96px);
+  margin-top:.18em;
+  transform: translateX(13%);
+}
 
-    <h1 class="brand">
-      <span class="brand-line1">L’intuitive</span>
-      <span class="brand-line2">
-        Guidance
-        <img src="images/star-white.png" class="star-after" alt="" aria-hidden="true">
-      </span>
-    </h1>
+/* Étoile blanche après “Guidance” */
+.star-after{
+  display:inline-block;
+  width:0.9em;
+  margin-left:-0.25em;
+  vertical-align:middle;
+  transform: translateY(10%);
+  filter: drop-shadow(0 0 4px rgba(255,255,255,0.85));
+  animation: twinkle 2.5s infinite ease-in-out;
+}
+@keyframes twinkle{
+  0%,100%{opacity:1; transform: translateY(10%) scale(1);}
+  50%{opacity:.4; transform: translateY(10%) scale(1.15);}
+}
 
-    <p class="subtitle">
-      Voyance <span class="emoji" role="img" aria-label="cristal">🔮</span> et accompagnement<br>
-      spirituel et social avec bienveillance afin d’éclairer<br>
-      vos questionnements dans les différents domaines de votre vie
-    </p>
+/* Sous-titre */
+.subtitle{
+  max-width: 60ch;
+  font-size: clamp(18px, 2.2vw, 24px);
+  margin: 1.2rem auto 0.9rem auto;
+  text-wrap: balance;
+}
+.emoji{ filter: drop-shadow(0 0 2px rgba(245,223,77,.4)); }
 
-    <div class="cta">
-      <div class="btn-group">
-        <a href="rendez-vous.html" class="btn-primary">Prendre rendez-vous</a>
-        <a href="chartes-de-bienveillance.html" class="btn-primary btn-alt">Charte de bienveillance</a>
-        <a href="avis.html" class="btn-primary btn-alt">Avis</a>
-      </div>
-    </div>
+/* Boutons */
+.btn-group{
+  display:flex;
+  flex-wrap:wrap;
+  gap: clamp(12px, 2vw, 18px);
+  justify-content:center;
+}
+.btn-primary{
+  display:inline-block;
+  margin-top: clamp(26px, 3.8vw, 34px);
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  text-decoration:none;
+  padding: 1rem 1.6rem;
+  border-radius: 999px;
+  font-weight:700;
+  letter-spacing:.2px;
+  box-shadow: 0 4px 14px rgba(245,223,77,.25), inset 0 -2px 0 rgba(0,0,0,.09);
+  transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
+}
+.btn-primary:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(245,223,77,.3), inset 0 -2px 0 rgba(0,0,0,.12);
+  filter: brightness(1.05);
+}
+.btn-alt{
+  box-shadow: 0 4px 14px rgba(245,223,77,.22), inset 0 -2px 0 rgba(0,0,0,.09);
+}
 
-  </main>
+/* ========= Décors ========= */
+.deco{
+  position:fixed;
+  pointer-events:none;
+  z-index:-1;
+  background: transparent !important;
+  border:0 !important;
+  outline:0 !important;
+  opacity:.92;
+  filter:
+    drop-shadow(0 0 10px rgba(0,0,0,.35))
+    drop-shadow(0 0 16px rgba(245,223,77,.12));
+  transform: translateZ(0);
+}
 
-  <!-- SECTION CONTACT / RENDEZ-VOUS -->
-  <section id="rendezvous" class="contact">
+/* Cartes */
+.deco-cards{
+  left: clamp(10px, 3vw, 40px);
+  top: clamp(40px, 8vh, 120px);
+  width:min(30vw, 300px);
+  transform: rotate(-8deg);
+  opacity:.95;
+}
 
-    <h2 class="visually-hidden">Prendre rendez-vous</h2>
+/* Nuages haut */
+.deco-clouds-top{
+  right: clamp(8px, 2vw, 24px);
+  top: clamp(26px, 6vh, 90px);
+  width:min(44vw, 520px);
+  opacity:.95;
+}
 
-    <p>
-      Je vous reçois sur rendez-vous en vidéoconférence, du lundi au vendredi,
-      de 9h30 à 14h et de 19h à 21h, le samedi de 10h à 12h30.
-    </p>
+/* Nuages bas */
+.deco-clouds-bottom{
+  left: clamp(8px, 2vw, 24px);
+  bottom: clamp(36px, 7vh, 100px);
+  width:min(36vw, 420px);
+  transform: scaleX(-1);
+  opacity:.95;
+}
 
-    <!-- Galerie photos -->
-    <div class="photo-showcase" aria-label="Exemples et présentation">
+/* ⭐ ÉTOILES (on les rend plus discrètes + on neutralise la croix jaune gênante) */
+.deco-stars{
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 
-      <!-- Photo principale : noir & blanc -->
-      <img
-        src="images/photo-marjorie.png"
-        alt="Portrait en noir et blanc"
-        class="photo-main"
-        loading="lazy"
-        decoding="async"
-      >
+  /* ↓ baisse forte pour éviter le “burst” derrière le texte */
+  opacity: .18;
 
-      <!-- Photos secondaires -->
-      <div class="photo-secondary">
-        <img
-          src="images/photo-cartes.png"
-          alt="Exemple de tirage de cartes"
-          class="photo-thumb"
-          loading="lazy"
-          decoding="async"
-        >
-        <img
-          src="images/photo-lumiere.png"
-          alt="Ambiance lumineuse et énergétique"
-          class="photo-thumb"
-          loading="lazy"
-          decoding="async"
-        >
-      </div>
+  /* blend doux : se fond dans le fond nuit */
+  mix-blend-mode: soft-light;
 
-    </div>
+  /* pas de shadow sur cette image */
+  filter: none;
+}
 
-  </section>
+/* Voile local (assombrit légèrement le centre pour effacer la croix derrière le texte) */
+body::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  pointer-events:none;
+  z-index: -1;
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <small>
-      &copy; <span id="year"></span> L’intuitive Guidance — Tous droits réservés.
-    </small>
-  </footer>
+  /* voile ciblé : centre un peu plus sombre, bords neutres */
+  background:
+    radial-gradient(circle at 50% 38%,
+      rgba(8,9,48,.72) 0%,
+      rgba(8,9,48,.55) 26%,
+      rgba(8,9,48,.20) 55%,
+      rgba(8,9,48,0) 78%);
+}
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+/* Cristaux (DESCENDUS pour ne plus chevaucher les nuages) */
+.deco-crystals{
+  right: clamp(20px, 3.5vw, 60px);
 
-</body>
-</html>
+  /* AVANT : bottom ~ 110px → on descend */
+  bottom: clamp(12px, 2vh, 40px);
+
+  width: min(26vw, 260px);
+  opacity:.95;
+}
+
+/* ========= Section contact ========= */
+.contact{
+  position: relative;
+  z-index: 2;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 70px 8vw 90px;
+  text-align:center;
+  border-top: 1px dashed rgba(245,223,77,.25);
+}
+.contact p{
+  max-width: 56ch;
+  margin: 0 auto 24px;
+  font-size: clamp(16px, 1.7vw, 19px);
+  text-wrap: balance;
+}
+
+/* ========= Galerie photos ========= */
+.photo-showcase{
+  margin-top: 34px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:22px;
+}
+
+.photo-main,
+.photo-thumb{
+  display:block;
+  max-width:100%;
+  height:auto;
+}
+
+.photo-main{
+  width: min(280px, 78vw);
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 999px;
+  filter: grayscale(100%) contrast(1.05);
+  box-shadow:
+    0 0 0 3px rgba(245,223,77,.22),
+    0 10px 30px rgba(0,0,0,.35),
+    0 0 26px rgba(245,223,77,.18);
+}
+
+.photo-secondary{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap:16px;
+  width: min(780px, 92%);
+}
+
+.photo-thumb{
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 18px;
+  box-shadow:
+    0 0 0 2px rgba(245,223,77,.14),
+    0 12px 28px rgba(0,0,0,.32);
+  transition: transform .25s ease, filter .25s ease, box-shadow .25s ease;
+}
+
+.photo-thumb:hover{
+  transform: translateY(-2px);
+  filter: brightness(1.03);
+  box-shadow:
+    0 0 0 2px rgba(245,223,77,.22),
+    0 18px 34px rgba(0,0,0,.38);
+}
+
+/* ========= Pages internes ========= */
+.page{
+  position:relative;
+  min-height: 92vh;
+  max-width: var(--maxw);
+  margin-inline:auto;
+  padding: clamp(22px, 4vw, 48px);
+  z-index:2;
+  text-align:center;
+}
+
+.page-header{
+  margin-top: clamp(40px, 12vh, 140px);
+  margin-bottom: clamp(18px, 3vh, 28px);
+}
+
+.page-title{
+  font-family:"Blackadder ITC","Segoe Script","URW Chancery L",cursive;
+  color: var(--mauve);
+  font-size: clamp(36px, 6.8vw, 78px);
+  line-height:.95;
+  text-shadow: 0 0 4px rgba(128,88,109,.35);
+}
+
+.page-sub{
+  display:block;
+  font-size: clamp(22px, 3.2vw, 36px);
+}
+
+.prose{
+  color: var(--text);
+  font-size: clamp(16px, 1.9vw, 20px);
+  line-height: 1.75;
+}
+
+.prose-centered{
+  max-width: 78ch;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.prose a{
+  color: var(--text);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.contact-highlight{
+  font-size: clamp(18px, 2.2vw, 22px);
+  margin: 14px 0;
+}
+
+/* Charte */
+.charte{
+  counter-reset: c;
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.charte-centered{
+  display: inline-block;
+  text-align: left;
+  max-width: 78ch;
+}
+
+.charte li{
+  counter-increment: c;
+  margin: 0 0 12px 0;
+}
+
+.charte li::before{
+  content: counter(c) ". ";
+  color: var(--text);
+  font-weight: 700;
+  margin-right: 6px;
+}
+
+/* ========= Footer ========= */
+.footer{
+  text-align:center;
+  padding: 20px 16px 40px;
+  color: rgba(245,223,77,.85);
+  font-size:.9rem;
+  border-top: 1px dashed rgba(245,223,77,.15);
+  position: relative;
+  z-index: 2;
+}
+
+/* ========= Mobile ========= */
+@media (max-width: 640px){
+
+  /* Lune au-dessus du titre */
+  .moon-wrap{
+    position: relative;
+    left: auto;
+    top: auto;
+    width: min(52vw, 230px);
+    margin: 14px auto 6px;
+    z-index: 0;
+    opacity: .95;
+  }
+  .moon{ display:block; margin: 0 auto; }
+
+  /* Marque centrée */
+  .brand{
+    margin-top: 12px;
+    margin-bottom: 12px;
+    text-align: center;
+    width: auto;
+    margin-left: 0;
+    z-index: 2;
+  }
+  .brand-line1, .brand-line2{ transform:none; }
+  .brand-line1{ font-size: clamp(36px, 12vw, 60px); }
+  .brand-line2{ font-size: clamp(38px, 13vw, 68px); }
+
+  /* Décors adaptés */
+  .deco-cards{ width:150px; top:70px; left:8px; opacity:.85; }
+  .deco-clouds-top{ width:260px; top:90px; right:0; opacity:.82; }
+  .deco-clouds-bottom{ width:240px; bottom:60px; left:10px; opacity:.88; }
+
+  /* Cristaux descendus aussi sur mobile */
+  .deco-crystals{ width:190px; bottom: 10px; right: 12px; opacity:.92; }
+
+  /* Étoiles encore plus discrètes sur mobile (sinon gêne texte) */
+  .deco-stars{ opacity:.14; }
+
+  .hero{ padding: 22px 16px 48px; }
+  .subtitle{ font-size: 18px; margin-top: 12px; }
+
+  /* Galerie */
+  .photo-showcase{ margin-top: 24px; gap: 18px; }
+  .photo-main{ width: min(240px, 76vw); }
+  .photo-secondary{
+    grid-template-columns: 1fr;
+    width: min(520px, 92%);
+  }
+  .photo-thumb{ border-radius: 16px; aspect-ratio: 16 / 10; }
+
+  .btn-group{ gap: 12px; }
+  .btn-primary{ font-size: 1.05rem; padding: .95rem 1.3rem; }
+}
