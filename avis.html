@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Avis – L’intuitive Guidance</title>
+  <link rel="preload" href="fonts/BlackadderITC.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="css/styles.css" />
+  <meta name="description" content="Avis et témoignages sur L’intuitive Guidance." />
+</head>
+<body>
+  <!-- Décors -->
+  <img src="images/cards.png"  class="deco deco-cards" alt="" aria-hidden="true">
+  <img src="images/clouds.png" class="deco deco-clouds-top" alt="" aria-hidden="true">
+  <img src="images/clouds.png" class="deco deco-clouds-bottom" alt="" aria-hidden="true">
+  <img src="images/stars.png"  class="deco deco-stars" alt="" aria-hidden="true">
+  <img src="images/crystals.png" class="deco deco-crystals" alt="" aria-hidden="true">
+
+  <main class="page">
+    <header class="page-header">
+      <h1 class="page-title">Avis</h1>
+      <span class="page-sub">Témoignages</span>
+    </header>
+
+    <section class="prose prose-centered">
+      <p>Les avis seront prochainement disponibles. 💫</p>
+
+      <div class="btn-group" style="margin-top:34px;">
+        <a href="index.html" class="btn-primary btn-alt">← Retour à l’accueil</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small>&copy; <span id="year"></span> L’intuitive Guidance — Tous droits réservés.</small>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
