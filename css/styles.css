@@ -1,127 +1,115 @@
 /* =========================
    BASE
 ========================= */
-*{ box-sizing:border-box; }
-html,body{ margin:0; padding:0; }
-body{
-  min-height:100vh;
-  overflow-x:hidden;
+*{
+  box-sizing: border-box;
+}
+html, body{
+  margin: 0;
+  padding: 0;
+  font-family: "Garamond", Georgia, "Times New Roman", serif;
   background: radial-gradient(circle at top, #12124a 0%, #070722 62%);
-  color:#fff;
-  font-family: Georgia, "Times New Roman", serif;
+  color: #fff;
 }
 
-/* Police titre (si ton fichier est bien dans /fonts) */
-@font-face{
-  font-family:"Blackadder";
-  src: url("../fonts/BlackadderITC.ttf") format("truetype");
-  font-display: swap;
+body{
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
 /* =========================
    DÉCORS (arrières plans)
 ========================= */
-.deco{
+.deco {
   position: fixed;
-  pointer-events:none;
-  z-index:-2;
-  opacity:.95;
-  background:transparent;
-  border:0;
-  outline:0;
+  pointer-events: none;
+  z-index: -2;
+  opacity: 0.95;
+  background: transparent;
 }
 
 .deco-stars{
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  opacity:.22;              /* IMPORTANT : évite la croix jaune trop visible */
-  filter:none;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.25;
 }
 
-.deco-cards{
-  top: 8%;
-  left: 4%;
+.deco-cards {
+  top: 6%;
+  left: 2%;
   width: 250px;
-  transform: rotate(-10deg);
-  opacity:.55;
-  filter: blur(.2px);
+  opacity: 0.55;
 }
 
 .deco-clouds-top{
-  top: 10%;
-  right: 4%;
-  width: 520px;
-  opacity:.70;
-  filter: blur(.2px);
+  top: 5%;
+  right: 8%;
+  width: 400px;
+  opacity: 0.75;
 }
 
 .deco-clouds-bottom{
   bottom: 9%;
-  left: 3%;
-  width: 520px;
-  transform: scaleX(-1);
-  opacity:.70;
-  filter: blur(.2px);
+  left: 4%;
+  width: 500px;
+  opacity: 0.8;
 }
 
 .deco-crystals{
   right: 5%;
-  bottom: 8%;               /* descend un peu pour ne pas chevaucher les nuages */
-  width: 260px;
-  opacity:.92;
+  bottom: 9%;
+  width: 300px;
+  opacity: 0.8;
 }
 
 /* =========================
    HERO (photo 2)
 ========================= */
 .hero{
-  position:relative;
-  z-index:1;
+  position: relative;
+  z-index: 1;
   min-height: 92vh;
-  padding: 70px 18px 40px;
-  text-align:center;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
+  padding: 50px 18px 40px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Lune à gauche derrière le titre */
 .moon{
-  position:absolute;
+  position: absolute;
   left: 22%;
-  top: 16%;
+  top: 15%;
   width: 220px;
-  border-radius:50%;
+  border-radius: 50%;
   box-shadow: 0 0 38px rgba(255,240,180,.35);
-  z-index:0;
-
-  /* adoucit le bord “découpé” */
+  z-index: 0;
   -webkit-mask-image: radial-gradient(circle, #000 62%, transparent 76%);
   mask-image: radial-gradient(circle, #000 62%, transparent 76%);
 }
 
 .brand{
-  position:relative;
-  z-index:1;
+  position: relative;
+  z-index: 1;
   margin: 0;
-  font-family:"Blackadder", cursive;
-  color:#80586D;
+  font-family: "Blackadder", cursive;
+  color: #80586D;
   text-shadow: 0 0 4px rgba(128,88,109,.35);
-  line-height:.95;
+  line-height: 1;
 }
 
 .brand-line1{
-  display:block;
+  display: block;
   font-size: 92px;
 }
+
 .brand-line2{
-  display:inline-flex;
-  align-items:center;
-  gap: 10px;
+  display: inline-block;
   font-size: 92px;
+  margin-left: 0.25em;
 }
 
 .star-after{
@@ -130,10 +118,9 @@ body{
   transform: translateY(10%);
 }
 
-/* texte */
 .subtitle{
-  position:relative;
-  z-index:1;
+  position: relative;
+  z-index: 1;
   margin: 22px auto 26px;
   max-width: 820px;
   font-size: 22px;
@@ -141,22 +128,23 @@ body{
   text-shadow: 0 2px 10px rgba(0,0,0,.35);
 }
 
-/* boutons (pilules jaunes) */
+/* =========================
+   BOUTONS (pilules jaunes)
+========================= */
 .btn-group{
-  position:relative;
-  z-index:1;
-  display:flex;
+  display: flex;
   gap: 18px;
-  flex-wrap:wrap;
-  justify-content:center;
+  flex-wrap: wrap;
+  justify-content: center;
+  z-index: 1;
 }
 
 .btn{
-  display:inline-block;
-  background:#F5DF4D;
-  color:#0b0b2e;
-  text-decoration:none;     /* enlève les liens bleus soulignés */
-  font-weight:700;
+  display: inline-block;
+  background: #F5DF4D;
+  color: #0b0b2e;
+  text-decoration: none;
+  font-weight: 700;
   padding: 16px 34px;
   border-radius: 999px;
   box-shadow: 0 10px 22px rgba(0,0,0,.35);
@@ -169,12 +157,12 @@ body{
 }
 
 /* =========================
-   SECTION BAS + PHOTOS
+   SECTION BAS (texte + photos)
 ========================= */
 .contact{
-  position:relative;
-  z-index:1;
-  text-align:center;
+  position: relative;
+  z-index: 1;
+  text-align: center;
   padding: 70px 18px 70px;
   border-top: 1px dashed rgba(245,223,77,.22);
 }
@@ -187,9 +175,9 @@ body{
 }
 
 .photo-showcase{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 22px;
 }
 
@@ -199,35 +187,31 @@ body{
   object-fit: cover;
   border-radius: 999px;
   filter: grayscale(100%);
-  box-shadow:
-    0 0 0 3px rgba(245,223,77,.18),
-    0 12px 30px rgba(0,0,0,.45);
+  box-shadow: 0 0 0 3px rgba(245,223,77,.18), 0 12px 30px rgba(0,0,0,.45);
 }
 
 .photo-secondary{
   width: min(820px, 92%);
-  display:grid;
+  display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 18px;
 }
 
 .photo-thumb{
-  width:100%;
+  width: 100%;
   aspect-ratio: 4/3;
   object-fit: cover;
   border-radius: 18px;
-  box-shadow:
-    0 0 0 2px rgba(245,223,77,.14),
-    0 14px 28px rgba(0,0,0,.40);
+  box-shadow: 0 0 0 2px rgba(245,223,77,.14), 0 14px 28px rgba(0,0,0,.40);
 }
 
 /* =========================
    FOOTER
 ========================= */
 .footer{
-  position:relative;
-  z-index:1;
-  text-align:center;
+  position: relative;
+  z-index: 1;
+  text-align: center;
   padding: 22px 16px 40px;
   color: rgba(245,223,77,.85);
   border-top: 1px dashed rgba(245,223,77,.15);
@@ -240,7 +224,6 @@ body{
 @media (max-width: 768px){
   .brand-line1, .brand-line2{ font-size: 64px; }
   .subtitle{ font-size: 18px; }
-
   .moon{
     left: 50%;
     top: 10%;
