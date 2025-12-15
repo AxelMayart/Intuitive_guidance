@@ -1,413 +1,279 @@
-/* ========= Thème ========= */
-:root{
-  --bg:#080930;           /* fond nuit */
-  --gold:#F5DF4D;         /* jaune / doré */
-  --mauve:#80586D;        /* mauve titre */
-  --text:#FFFFFF;         /* texte blanc */
-  --btn-bg:#F5DF4D;
-  --btn-text:#080930;
-  --maxw:1200px;
+/* ===============================
+   BASE
+================================ */
+
+*,
+*::before,
+*::after{
+  box-sizing: border-box;
 }
 
-/* ========= Reset / base ========= */
-*{box-sizing:border-box}
-html,body{height:100%}
+html, body{
+  margin: 0;
+  padding: 0;
+}
+
 body{
-  margin:0;
-  background:var(--bg);
-  color:var(--text);
-  overflow-x:hidden;
-  font-family: "Garamond", Georgia, "Times New Roman", serif;
-  line-height:1.5;
-}
-@font-face{
-  font-family:"Blackadder ITC";
-  src: local("Blackadder ITC"),
-       url("../fonts/BlackadderITC.ttf") format("truetype");
-  font-display: swap;
-}
-.visually-hidden{
-  position:absolute !important;
-  clip: rect(1px,1px,1px,1px);
-  clip-path: inset(50%);
-  width:1px;height:1px; overflow:hidden; white-space:nowrap; border:0; padding:0; margin:-1px;
+  font-family: Georgia, "Times New Roman", serif;
+  background: radial-gradient(circle at top, #14144a 0%, #070724 65%);
+  color: #ffffff;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
-/* ========= HERO ========= */
+/* ===============================
+   DECORS
+================================ */
+
+.deco{
+  position: fixed;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.deco-cards{
+  top: 6%;
+  left: 4%;
+  width: 140px;
+}
+
+.deco-clouds-top{
+  top: 12%;
+  right: 3%;
+  width: 200px;
+}
+
+.deco-clouds-bottom{
+  bottom: 8%;
+  left: 3%;
+  width: 220px;
+}
+
+.deco-crystals{
+  bottom: 10%;
+  right: 3%;
+  width: 150px;
+}
+
+.deco-stars{
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: .6;
+}
+
+/* ===============================
+   HERO
+================================ */
+
 .hero{
-  position:relative;
-  min-height: 92vh;
-  max-width: var(--maxw);
-  margin-inline:auto;
-  padding: clamp(18px, 4vw, 48px);
-  display:block;
-  text-align:center;
-  z-index:2;
-}
-
-/* Lune haut-gauche derrière le titre */
-.moon-wrap{
-  position:absolute;
-  top: clamp(32px, 7vh, 120px);
-  left: clamp(28px, 7vw, 140px);
-  width: min(36vw, 360px);
-  z-index:0;
-  pointer-events:none;
-}
-.moon{
-  width:100%;
-  border-radius: 50%;
-  /* Remplace le clip-path (qui peut créer un “rond moche” selon les écrans) */
-  -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 62%, transparent 72%);
-  mask-image: radial-gradient(circle at 50% 50%, #000 62%, transparent 72%);
-  filter: drop-shadow(0 0 16px rgba(245,223,77,.25));
-}
-
-/* Titre marque */
-.brand{
   position: relative;
-  margin-top: clamp(44px, 12vh, 150px);
-  margin-bottom: .8rem;
-  font-family: "Blackadder ITC", "Segoe Script", "URW Chancery L", cursive;
-  color: var(--mauve);
-  text-shadow: 0 0 4px rgba(128,88,109,.35);
-  line-height: .9;
-  z-index:1;
-  text-align: left;
-  width: fit-content;
-  margin-left: clamp(38px, 16vw, 280px);
+  z-index: 1;
+  text-align: center;
+  padding: 120px 20px 80px;
 }
+
+/* Lune */
+.moon-wrap{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.moon{
+  width: 180px;
+  height: auto;
+  border-radius: 50%;
+  box-shadow:
+    0 0 40px rgba(255, 244, 200, .35);
+}
+
+/* ===============================
+   TITRES
+================================ */
+
+@font-face{
+  font-family: "Blackadder";
+  src: url("../fonts/BlackadderITC.ttf") format("truetype");
+}
+
+.brand{
+  margin: 0;
+  line-height: 1.05;
+}
+
 .brand-line1{
-  display:block;
-  font-size: clamp(38px, 7vw, 90px);
-  transform: translateX(-1%);
+  display: block;
+  font-family: "Blackadder", cursive;
+  font-size: 64px;
+  color: #80586D;
 }
+
 .brand-line2{
-  display:block;
-  font-size: clamp(40px, 7.5vw, 96px);
-  margin-top:.18em;
-  transform: translateX(13%);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Blackadder", cursive;
+  font-size: 64px;
+  color: #80586D;
 }
 
-/* Étoile après “Guidance” */
-.star-after {
-  display: inline-block;
-  width: 0.9em;
-  margin-left: -0.25em;
-  vertical-align: middle;
-  transform: translateY(10%);
-  filter: drop-shadow(0 0 4px rgba(255,255,255,0.85));
-  animation: twinkle 2.5s infinite ease-in-out;
-}
-@keyframes twinkle {
-  0%, 100% { opacity: 1; transform: translateY(10%) scale(1); }
-  50% { opacity: 0.4; transform: translateY(10%) scale(1.15); }
+.star-after{
+  width: 28px;
+  opacity: .9;
 }
 
-/* Sous-titre */
+/* ===============================
+   TEXTE
+================================ */
+
 .subtitle{
-  max-width: 60ch;
-  font-size: clamp(18px, 2.2vw, 24px);
-  margin: 1.2rem auto 0.9rem auto;
-  text-wrap: balance;
+  max-width: 760px;
+  margin: 28px auto 40px;
+  font-size: 18px;
+  line-height: 1.7;
 }
-.emoji{ filter: drop-shadow(0 0 2px rgba(245,223,77,.4)); }
 
-/* Boutons */
+/* ===============================
+   BOUTONS
+================================ */
+
 .btn-group{
-  display:flex;
-  flex-wrap:wrap;
-  gap: clamp(12px, 2vw, 18px);
-  justify-content:center;
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+  flex-wrap: wrap;
 }
+
 .btn-primary{
-  display:inline-block;
-  margin-top: clamp(26px, 3.8vw, 34px);
-  background: var(--btn-bg);
-  color: var(--btn-text);
-  text-decoration:none;
-  padding: 1rem 1.6rem;
+  background: #f3e25c;
+  color: #0b0b2e;
+  padding: 16px 34px;
   border-radius: 999px;
-  font-weight:700;
-  letter-spacing:.2px;
-  box-shadow: 0 4px 14px rgba(245,223,77,.25), inset 0 -2px 0 rgba(0,0,0,.09);
-  transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
+  text-decoration: none;
+  font-weight: bold;
+  box-shadow: 0 6px 18px rgba(0,0,0,.35);
+  transition: transform .2s ease, box-shadow .2s ease;
 }
+
 .btn-primary:hover{
   transform: translateY(-2px);
-  box-shadow: 0 10px 22px rgba(245,223,77,.3), inset 0 -2px 0 rgba(0,0,0,.12);
-  filter: brightness(1.05);
-}
-.btn-alt{ box-shadow: 0 4px 14px rgba(245,223,77,.22), inset 0 -2px 0 rgba(0,0,0,.09); }
-
-/* ========= Décors ========= */
-.deco{
-  position:fixed;
-  z-index:-1;
-  pointer-events:none;
-}
-.deco-cards{
-  left: clamp(10px, 3vw, 40px);
-  top: clamp(40px, 8vh, 120px);
-  width:min(26vw, 240px);
-  transform: rotate(-8deg);
-}
-.deco-clouds-top{
-  right: clamp(8px, 2vw, 24px);
-  top: clamp(26px, 6vh, 90px);
-  width:min(36vw, 400px);
-}
-.deco-clouds-bottom{
-  left: clamp(8px, 2vw, 24px);
-  bottom: clamp(36px, 7vh, 100px);
-  width:min(28vw, 320px);
-  transform: scaleX(-1);
-  opacity:.95;
-}
-.deco-stars{
-  right: clamp(8px, 3vw, 36px);
-  bottom: clamp(30px, 6vh, 90px);
-  width:min(18vw, 180px);
-}
-.deco-crystals{
-  right: clamp(20px, 3.5vw, 60px);
-  bottom: clamp(42px, 8vh, 110px);
-  width: min(20vw, 200px);
-  filter: drop-shadow(0 0 10px rgba(245,223,77,.22));
+  box-shadow: 0 10px 22px rgba(0,0,0,.45);
 }
 
-/* ========= Section contact ========= */
+.btn-alt{
+  background: #f7e87b;
+}
+
+/* ===============================
+   CONTACT / RENDEZ-VOUS
+================================ */
+
 .contact{
   position: relative;
-  z-index: 2;
-  max-width: var(--maxw);
-  margin: 0 auto;
-  padding: 70px 8vw 90px;
-  color: var(--text);
-  text-align:center;
-  border-top: 1px dashed rgba(245,223,77,.25);
+  z-index: 1;
+  text-align: center;
+  padding: 80px 20px 60px;
 }
+
 .contact p{
-  max-width: 56ch;
-  margin: 0 auto;
-  font-size: clamp(16px, 1.7vw, 19px);
-  text-wrap: balance;
-  text-align: center;
+  max-width: 820px;
+  margin: 0 auto 40px;
+  font-size: 20px;
+  line-height: 1.7;
 }
 
-/* ========= Pages internes ========= */
-.page{
-  position:relative;
-  min-height: 92vh;
-  max-width: var(--maxw);
-  margin-inline:auto;
-  padding: clamp(22px, 4vw, 48px);
-  z-index:2;
-  text-align:center;
-}
-.page-header{ margin-top: clamp(40px, 12vh, 140px); margin-bottom: clamp(18px, 3vh, 28px); }
-.page-title{
-  font-family:"Blackadder ITC","Segoe Script","URW Chancery L",cursive;
-  color: var(--mauve);
-  font-size: clamp(36px, 6.8vw, 78px);
-  line-height:.95;
-  text-shadow: 0 0 4px rgba(128,88,109,.35);
-}
-.page-sub{
-  display:block;
-  font-size: clamp(22px, 3.2vw, 36px);
-}
-
-/* Corps de page */
-.prose{
-  color: var(--text);
-  font-size: clamp(16px, 1.9vw, 20px);
-  line-height: 1.75;
-  text-wrap: pretty;
-}
-.prose-centered{
-  max-width: 78ch;
-  margin: 0 auto;
-  text-align: center;
-}
-
-/* Liens sur pages internes */
-.prose a{
-  color: var(--text);
-  text-decoration-thickness: 2px;
-  text-underline-offset: 3px;
-}
-
-/* Mise en valeur email/instagram */
-.contact-highlight{
-  font-size: clamp(18px, 2.2vw, 22px);
-  margin: 14px 0;
-}
-
-/* Liste charte */
-.charte{
-  counter-reset: c;
-  list-style: none;
-  padding-left: 0;
-  margin: 0;
-}
-.charte-centered{
-  display: inline-block;
-  text-align: left;
-  max-width: 78ch;
-}
-.charte li{
-  counter-increment: c;
-  margin: 0 0 12px 0;
-}
-.charte li::before{
-  content: counter(c) ". ";
-  color: var(--text);
-  font-weight: 700;
-  margin-right: 6px;
-}
-
-/* ========= Footer ========= */
-.footer{
-  text-align:center;
-  padding: 20px 16px 40px;
-  color: rgba(245,223,77,.85);
-  font-size:.9rem;
-  border-top: 1px dashed rgba(245,223,77,.15);
-  position: relative;
-  z-index: 2;
-}
-
-/* ========= Mobile : garder l’esthétique + décors visibles ========= */
-@media (max-width: 640px){
-  :root{ --text:#ffffff; }
-
-  body, .subtitle, .prose, .contact, .contact p,
-  .page, .page-sub, .charte li{ color:#ffffff; }
-
-  .charte li::before{ color:#ffffff; }
-
-  /* Lisibilité sans “voile” (le voile masquait tes décors) */
-  .prose, .contact p, .subtitle, .charte li{
-    text-shadow: 0 1px 2px rgba(0,0,0,.35);
-  }
-
-  /* Lune au-dessus du titre, sans chevauchement */
-  .moon-wrap{
-    position: relative;
-    left: auto;
-    top: auto;
-    transform: none;
-    width: min(52vw, 230px);
-    margin: 14px auto 6px;
-    z-index: 0;
-    opacity: .95;
-  }
-  .moon{ display:block; margin: 0 auto; }
-
-  /* Marque centrée */
-  .brand{
-    margin-top: 12px;
-    margin-bottom: 12px;
-    text-align: center;
-    width: auto;
-    margin-left: 0;
-    position: relative;
-    z-index: 2;
-  }
-  .brand-line1, .brand-line2{ transform:none; }
-  .brand-line1{ font-size: clamp(36px, 12vw, 60px); }
-  .brand-line2{ font-size: clamp(38px, 13vw, 68px); }
-
-  /* Décors : tailles harmonisées */
-  .deco-cards{ width:110px; top:80px; left:8px; opacity:.8; }
-  .deco-clouds-top{ width:200px; top:100px; right:0; opacity:.75; }
-  .deco-clouds-bottom{ width:180px; bottom:60px; left:10px; opacity:.85; }
-  .deco-crystals{ width:140px; bottom:80px; right:20px; opacity:.9; }
-  .deco-stars{ width:100px; bottom:40px; right:15px; opacity:.8; }
-
-  /* Contenu */
-  .hero, .page{ padding: 22px 16px 48px; }
-  .subtitle{ font-size: 18px; margin-top: 12px; }
-  .prose, .contact p{ font-size: 18px; line-height: 1.85; }
-  .prose-centered, .charte-centered{ max-width: 92%; }
-
-  /* Boutons */
-  .btn-group{ gap: 12px; }
-  .btn-primary{ font-size: 1.05rem; padding: .95rem 1.3rem; }
-}
-
-/* ========= Galerie photos – accueil (responsive) ========= */
+/* ===============================
+   GALERIE PHOTOS
+================================ */
 
 .photo-showcase{
-  margin-top: 44px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 22px;
+  gap: 34px;
 }
 
-/* Photo principale (noir & blanc) : intégrée au style */
+/* Photo principale */
 .photo-main{
-  width: min(280px, 78vw);
+  width: 260px;
   aspect-ratio: 1 / 1;
   object-fit: cover;
-  border-radius: 999px;
-  filter: grayscale(100%) contrast(1.05);
+  border-radius: 50%;
+  filter: grayscale(100%);
   box-shadow:
-    0 0 0 3px rgba(245,223,77,.22),
-    0 10px 30px rgba(0,0,0,.35),
-    0 0 26px rgba(245,223,77,.18);
+    0 0 0 3px rgba(245,223,77,.25),
+    0 0 30px rgba(245,223,77,.22),
+    0 12px 30px rgba(0,0,0,.45);
 }
 
-/* Rangée des 2 photos exemples */
+/* Photos secondaires */
 .photo-secondary{
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
-  width: min(780px, 92%);
+  gap: 26px;
+  max-width: 900px;
+  width: 100%;
 }
 
 .photo-thumb{
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
-  border-radius: 18px;
+  border-radius: 26px;
   box-shadow:
-    0 0 0 2px rgba(245,223,77,.14),
-    0 12px 28px rgba(0,0,0,.32);
-  transition: transform .25s ease, filter .25s ease, box-shadow .25s ease;
+    0 0 0 2px rgba(245,223,77,.18),
+    0 14px 30px rgba(0,0,0,.4);
 }
 
-.photo-thumb:hover{
-  transform: translateY(-2px);
-  filter: brightness(1.03);
-  box-shadow:
-    0 0 0 2px rgba(245,223,77,.22),
-    0 18px 34px rgba(0,0,0,.38);
+/* ===============================
+   FOOTER
+================================ */
+
+.footer{
+  text-align: center;
+  padding: 50px 20px 40px;
+  font-size: 14px;
+  color: #f3e25c;
 }
 
-/* ========= Mobile ========= */
-@media (max-width: 640px){
-  .photo-showcase{ margin-top: 28px; gap: 18px; }
+/* ===============================
+   MOBILE
+================================ */
+
+@media (max-width: 768px){
+
+  .hero{
+    padding-top: 90px;
+  }
+
+  .brand-line1,
+  .brand-line2{
+    font-size: 44px;
+  }
+
+  .moon{
+    width: 140px;
+  }
+
+  .subtitle{
+    font-size: 16px;
+  }
+
+  .contact p{
+    font-size: 18px;
+  }
 
   .photo-main{
-    width: min(240px, 76vw);
-    box-shadow:
-      0 0 0 3px rgba(245,223,77,.20),
-      0 10px 26px rgba(0,0,0,.34),
-      0 0 22px rgba(245,223,77,.16);
+    width: 220px;
   }
 
-  /* Sur mobile : les 2 photos passent en colonne, plus lisible */
   .photo-secondary{
     grid-template-columns: 1fr;
-    width: min(520px, 92%);
+    gap: 22px;
   }
 
-  .photo-thumb{
-    border-radius: 16px;
-    aspect-ratio: 16 / 10;
+  .btn-primary{
+    padding: 14px 28px;
   }
 }
-
