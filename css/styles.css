@@ -56,7 +56,10 @@ body{
 }
 .moon{
   width:100%;
-  clip-path: circle(50% at 50% 50%);
+  border-radius: 50%;
+  /* Remplace le clip-path (qui peut créer un “rond moche” selon les écrans) */
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 62%, transparent 72%);
+  mask-image: radial-gradient(circle at 50% 50%, #000 62%, transparent 72%);
   filter: drop-shadow(0 0 16px rgba(245,223,77,.25));
 }
 
@@ -228,6 +231,19 @@ body{
   text-align: center;
 }
 
+/* Liens sur pages internes */
+.prose a{
+  color: var(--text);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+/* Mise en valeur email/instagram */
+.contact-highlight{
+  font-size: clamp(18px, 2.2vw, 22px);
+  margin: 14px 0;
+}
+
 /* Liste charte */
 .charte{
   counter-reset: c;
@@ -261,43 +277,37 @@ body{
   position: relative;
   z-index: 2;
 }
-/* ========= Mobile amélioré avec dark overlay + lune repositionnée ========= */
-@media (max-width: 640px){
 
+/* ========= Mobile : garder l’esthétique + décors visibles ========= */
+@media (max-width: 640px){
   :root{ --text:#ffffff; }
+
   body, .subtitle, .prose, .contact, .contact p,
   .page, .page-sub, .charte li{ color:#ffffff; }
-  .prose a{ color:#ffffff; text-decoration-thickness: 2px; }
+
   .charte li::before{ color:#ffffff; }
+
+  /* Lisibilité sans “voile” (le voile masquait tes décors) */
   .prose, .contact p, .subtitle, .charte li{
     text-shadow: 0 1px 2px rgba(0,0,0,.35);
   }
 
-  /* Voile doux sous le texte */
-  .hero::before, .page::before, .contact::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:rgba(8,9,48,.55);
-    backdrop-filter: blur(4px);
-    z-index:-1;
-    border-radius:12px;
-  }
-
-  /* === Lune repositionnée au-dessus === */
+  /* Lune au-dessus du titre, sans chevauchement */
   .moon-wrap{
-    left: 50%;
-    transform: translateX(-50%);
-    width: min(52vw, 240px);
-    top: 0;                  /* collée en haut */
-    margin-top: 12px;
-    opacity: .9;
-    z-index: 1;              /* passe au-dessus du fond mais sous le texte */
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    width: min(52vw, 230px);
+    margin: 14px auto 6px;
+    z-index: 0;
+    opacity: .95;
   }
+  .moon{ display:block; margin: 0 auto; }
 
-  /* Marque et titre centrés + marge ajustée pour libérer la lune */
+  /* Marque centrée */
   .brand{
-    margin-top: 180px;       /* éloigne le titre de la lune */
+    margin-top: 12px;
     margin-bottom: 12px;
     text-align: center;
     width: auto;
@@ -309,16 +319,16 @@ body{
   .brand-line1{ font-size: clamp(36px, 12vw, 60px); }
   .brand-line2{ font-size: clamp(38px, 13vw, 68px); }
 
-  /* Décors conservés et redimensionnés harmonieusement */
+  /* Décors : tailles harmonisées */
   .deco-cards{ width:110px; top:80px; left:8px; opacity:.8; }
   .deco-clouds-top{ width:200px; top:100px; right:0; opacity:.75; }
   .deco-clouds-bottom{ width:180px; bottom:60px; left:10px; opacity:.85; }
   .deco-crystals{ width:140px; bottom:80px; right:20px; opacity:.9; }
   .deco-stars{ width:100px; bottom:40px; right:15px; opacity:.8; }
 
-  /* Textes et contenu */
+  /* Contenu */
   .hero, .page{ padding: 22px 16px 48px; }
-  .subtitle{ font-size: 18px; margin-top: 16px; }
+  .subtitle{ font-size: 18px; margin-top: 12px; }
   .prose, .contact p{ font-size: 18px; line-height: 1.85; }
   .prose-centered, .charte-centered{ max-width: 92%; }
 
@@ -326,33 +336,78 @@ body{
   .btn-group{ gap: 12px; }
   .btn-primary{ font-size: 1.05rem; padding: .95rem 1.3rem; }
 }
-/* --- Correctif mobile : lune au-dessus du texte, sans chevauchement --- */
-@media (max-width: 640px){
-  /* La lune n'est plus en absolute : elle passe dans le flux au-dessus du titre */
-  .moon-wrap{
-    position: relative;   /* était absolute */
-    left: auto;
-    top: auto;
-    transform: none;
-    width: min(52vw, 230px);
-    margin: 14px auto 6px;  /* centrée et au-dessus du titre */
-    z-index: 0;             /* sous le texte si jamais */
-    opacity: .9;
-  }
-  .moon{ display:block; margin: 0 auto; }
 
-  /* Le titre remonte (plus besoin de gros espace) et ne se superpose plus */
-  .brand{
-    margin-top: 12px;       /* avant : ~180px, devenu inutile */
-    margin-bottom: 12px;
-    text-align: center;
-    margin-left: 0;
-    width: auto;
-    position: relative;
-    z-index: 2;
-  }
-  .brand-line1, .brand-line2{ transform:none; }
+/* ========= Galerie photos – accueil (responsive) ========= */
 
-  /* Un peu d’espace avant le paragraphe d’introduction */
-  .subtitle{ margin-top: 12px; }
+.photo-showcase{
+  margin-top: 44px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
 }
+
+/* Photo principale (noir & blanc) : intégrée au style */
+.photo-main{
+  width: min(280px, 78vw);
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 999px;
+  filter: grayscale(100%) contrast(1.05);
+  box-shadow:
+    0 0 0 3px rgba(245,223,77,.22),
+    0 10px 30px rgba(0,0,0,.35),
+    0 0 26px rgba(245,223,77,.18);
+}
+
+/* Rangée des 2 photos exemples */
+.photo-secondary{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  width: min(780px, 92%);
+}
+
+.photo-thumb{
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 18px;
+  box-shadow:
+    0 0 0 2px rgba(245,223,77,.14),
+    0 12px 28px rgba(0,0,0,.32);
+  transition: transform .25s ease, filter .25s ease, box-shadow .25s ease;
+}
+
+.photo-thumb:hover{
+  transform: translateY(-2px);
+  filter: brightness(1.03);
+  box-shadow:
+    0 0 0 2px rgba(245,223,77,.22),
+    0 18px 34px rgba(0,0,0,.38);
+}
+
+/* ========= Mobile ========= */
+@media (max-width: 640px){
+  .photo-showcase{ margin-top: 28px; gap: 18px; }
+
+  .photo-main{
+    width: min(240px, 76vw);
+    box-shadow:
+      0 0 0 3px rgba(245,223,77,.20),
+      0 10px 26px rgba(0,0,0,.34),
+      0 0 22px rgba(245,223,77,.16);
+  }
+
+  /* Sur mobile : les 2 photos passent en colonne, plus lisible */
+  .photo-secondary{
+    grid-template-columns: 1fr;
+    width: min(520px, 92%);
+  }
+
+  .photo-thumb{
+    border-radius: 16px;
+    aspect-ratio: 16 / 10;
+  }
+}
+
