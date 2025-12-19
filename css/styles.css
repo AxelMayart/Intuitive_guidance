@@ -1,16 +1,39 @@
-/* =========================
-   BASE
-========================= */
+/* =========================================================
+   0) RESET + VARIABLES
+========================================================= */
 *{ box-sizing:border-box; }
 html,body{ margin:0; padding:0; }
+img{ display:block; max-width:100%; height:auto; }
+a{ color:inherit; }
+
+:root{
+  --bg1:#12124a;
+  --bg2:#070722;
+
+  --gold:#F5DF4D;
+  --mauve:#80586D;
+
+  --text:#ffffff;
+  --text-soft:rgba(255,255,255,.88);
+
+  --shadow: 0 18px 40px rgba(0,0,0,.45);
+  --shadow-soft: 0 10px 22px rgba(0,0,0,.35);
+
+  --radius: 22px;
+  --pad: clamp(16px, 3vw, 28px);
+
+  --container: 1100px;
+  --reading: 76ch;
+}
 
 body{
   min-height:100vh;
   overflow-x:hidden;
-  background: radial-gradient(circle at top, #12124a 0%, #070722 62%);
-  color:#fff;
+  background: radial-gradient(circle at top, var(--bg1) 0%, var(--bg2) 62%);
+  color: var(--text);
   font-family: Georgia, "Times New Roman", serif;
   position:relative;
+  -webkit-text-size-adjust: 100%;
 }
 
 /* Police */
@@ -20,9 +43,9 @@ body{
   font-display: swap;
 }
 
-/* =========================
-   DÉCORS
-========================= */
+/* =========================================================
+   1) DÉCORS (communs à tout le site)
+========================================================= */
 .deco{
   position: fixed;
   pointer-events:none;
@@ -32,7 +55,6 @@ body{
   border:0 !important;
   outline:0 !important;
   box-shadow:none !important;
-  display:block;
 }
 
 .deco-stars{
@@ -73,66 +95,11 @@ body{
   opacity:.92;
 }
 
-/* =========================
-   HERO (PAGE ACCUEIL – INCHANGÉ)
-========================= */
-.hero{
-  position:relative;
-  z-index: 1;
-  min-height: 92vh;
-  padding: 70px 18px 40px;
-  text-align:center;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-}
+/* =========================================================
+   2) COMPOSANTS COMMUNS
+========================================================= */
 
-.moon{
-  position:absolute;
-  left: 22%;
-  top: 16%;
-  width: 220px;
-  border-radius:50%;
-  box-shadow: 0 0 38px rgba(255,240,180,.35);
-  z-index:0;
-}
-
-.brand{
-  position:relative;
-  z-index:1;
-  margin: 0;
-  font-family:"Blackadder", cursive;
-  color:#80586D;
-  text-shadow: 0 0 4px rgba(128,88,109,.35);
-  line-height:.95;
-}
-
-.brand-line1{ display:block; font-size: 92px; }
-.brand-line2{
-  display:inline-flex;
-  align-items:center;
-  gap: 10px;
-  font-size: 92px;
-}
-
-.star-after{
-  width: 30px;
-  filter: drop-shadow(0 0 4px rgba(255,255,255,.85));
-  transform: translateY(10%);
-}
-
-.subtitle{
-  position:relative;
-  z-index:1;
-  margin: 22px auto 26px;
-  max-width: 820px;
-  font-size: 22px;
-  line-height: 1.7;
-  text-shadow: 0 2px 10px rgba(0,0,0,.35);
-}
-
-/* Boutons globaux */
+/* Boutons */
 .btn-group{
   position:relative;
   z-index:1;
@@ -143,198 +110,307 @@ body{
 }
 
 .btn{
-  display:inline-block;
-  background:#F5DF4D;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  background: var(--gold);
   color:#0b0b2e;
   text-decoration:none;
-  font-weight:700;
+  font-weight:800;
   padding: 16px 34px;
   border-radius: 999px;
-  box-shadow: 0 10px 22px rgba(0,0,0,.35);
-  transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+  box-shadow: var(--shadow-soft);
+  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+  min-height: 46px;
 }
 .btn:hover{
   transform: translateY(-2px);
   box-shadow: 0 14px 26px rgba(0,0,0,.45);
   filter: brightness(1.03);
 }
+.btn:focus-visible{
+  outline: 3px solid rgba(245,223,77,.55);
+  outline-offset: 4px;
+}
 
-/* =========================
-   FOOTER
-========================= */
+/* Footer */
 .footer{
   position:relative;
   z-index: 1;
   text-align:center;
-  padding: 22px 16px 40px;
+  padding: 22px var(--pad) calc(40px + env(safe-area-inset-bottom));
   color: rgba(245,223,77,.85);
   border-top: 1px dashed rgba(245,223,77,.15);
   font-size: .95rem;
 }
 
-/* =========================
-   MOBILE GLOBAL
-========================= */
-@media (max-width: 768px){
-  .brand-line1, .brand-line2{ font-size: 64px; }
-  .subtitle{ font-size: 18px; }
+/* Accessibilité */
+.visually-hidden{
+  position:absolute !important;
+  width:1px; height:1px;
+  padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0,0,0,0);
+  white-space:nowrap; border:0;
+}
 
-  .moon{
+/* =========================================================
+   3) LAYOUT SOUS-PAGES (RDV / CHARTE / AVIS)
+   -> Stable : tout est sous .page
+========================================================= */
+.page{
+  position:relative;
+  z-index:1;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: calc(68px + env(safe-area-inset-top)) var(--pad) 40px;
+  min-height: 82svh;
+}
+
+.page-header{
+  text-align:center;
+  margin-bottom: 22px;
+}
+
+.page-title{
+  margin:0;
+  font-family:"Blackadder", cursive;
+  font-size: clamp(46px, 5.4vw, 86px);
+  line-height:.95;
+  color: var(--mauve);
+  text-shadow: 0 0 4px rgba(128,88,109,.35), 0 12px 30px rgba(0,0,0,.35);
+  padding: 0 6px;
+}
+
+.page-sub{
+  display:block;
+  margin-top: 8px;
+  color: rgba(255,255,255,.78);
+  font-size: clamp(14px, 1.2vw, 18px);
+}
+
+/* Carte de contenu (SANS blur, donc zéro artefact) */
+.prose{
+  max-width: var(--reading);
+  margin: 0 auto;
+  padding: clamp(18px, 2.2vw, 28px);
+  border-radius: var(--radius);
+  background: rgba(8,8,32,.78);
+  border: 1px solid rgba(245,223,77,.18);
+  box-shadow: var(--shadow);
+}
+
+.prose-centered{
+  text-align:center;
+}
+
+.prose p{
+  margin: 0 0 14px;
+  color: var(--text-soft);
+  line-height: 1.75;
+  font-size: clamp(16px, 1.2vw, 19px);
+}
+.prose p:last-child{ margin-bottom:0; }
+
+/* Highlights contact */
+.contact-highlight{
+  font-weight: 800;
+  margin: 12px 0 16px;
+  font-size: clamp(16px, 1.2vw, 19px);
+}
+.contact-highlight a{
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Charte list */
+.charte{
+  margin: 0;
+  padding-left: 1.25em;
+  display: grid;
+  gap: 12px;
+  text-align: left;
+  color: rgba(255,255,255,.95);
+  font-size: clamp(16px, 1.2vw, 19px);
+  line-height: 1.75;
+}
+.charte li::marker{
+  color: rgba(245,223,77,.95);
+  font-weight: 900;
+}
+
+/* Espace bouton retour sur sous-pages */
+.page .btn-group{
+  margin-top: 26px;
+}
+
+/* =========================================================
+   4) PAGE ACCUEIL (scopée -> aucune sous-page impactée)
+========================================================= */
+.is-home .hero{
+  position:relative;
+  z-index: 1;
+  min-height: 92svh;
+  padding: 70px var(--pad) 40px;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+
+.is-home .moon{
+  position:absolute;
+  left: 22%;
+  top: 16%;
+  width: 220px;
+  border-radius:50%;
+  box-shadow: 0 0 38px rgba(255,240,180,.35);
+  z-index:0;
+}
+
+.is-home .brand{
+  position:relative;
+  z-index:1;
+  margin: 0;
+  font-family:"Blackadder", cursive;
+  color: var(--mauve);
+  text-shadow: 0 0 4px rgba(128,88,109,.35);
+  line-height:.95;
+}
+
+.is-home .brand-line1{ display:block; font-size: 92px; }
+.is-home .brand-line2{
+  display:inline-flex;
+  align-items:center;
+  gap: 10px;
+  font-size: 92px;
+}
+
+.is-home .star-after{
+  width: 30px;
+  filter: drop-shadow(0 0 4px rgba(255,255,255,.85));
+  transform: translateY(10%);
+}
+
+.is-home .subtitle{
+  position:relative;
+  z-index:1;
+  margin: 22px auto 26px;
+  max-width: 820px;
+  font-size: 22px;
+  line-height: 1.7;
+  color: rgba(255,255,255,.9);
+  text-shadow: 0 2px 10px rgba(0,0,0,.35);
+}
+
+/* Section contact + photos (home) */
+.is-home .contact{
+  position: relative;
+  z-index: 1;
+  text-align:center;
+  padding: 70px var(--pad) 70px;
+  border-top: 1px dashed rgba(245,223,77,.22);
+}
+
+.is-home .contact p{
+  max-width: 900px;
+  margin: 0 auto 34px;
+  font-size: 20px;
+  line-height: 1.7;
+  color: rgba(255,255,255,.88);
+}
+
+.is-home .photo-showcase{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap: 22px;
+}
+
+.is-home .photo-main{
+  width: 260px;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 999px;
+  filter: grayscale(100%);
+  box-shadow:
+    0 0 0 3px rgba(245,223,77,.18),
+    0 12px 30px rgba(0,0,0,.45);
+}
+
+.is-home .photo-secondary{
+  width: min(820px, 92%);
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.is-home .photo-thumb{
+  width:100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  border-radius: 18px;
+  box-shadow:
+    0 0 0 2px rgba(245,223,77,.14),
+    0 14px 28px rgba(0,0,0,.40);
+}
+
+/* =========================================================
+   5) AJUSTEMENTS DÉCORS PAR PAGE (SANS :has)
+   -> on joue sur le BODY CLASS
+========================================================= */
+/* Charte : on enlève les étoiles pour éviter tout effet visuel parasite */
+.is-charte .deco-stars{ display:none; }
+.is-charte .deco-clouds-top,
+.is-charte .deco-clouds-bottom{ opacity:.55; }
+.is-charte .deco-cards{ opacity:.42; }
+
+/* RDV : léger focus sur lisibilité */
+.is-rdv .deco-clouds-top,
+.is-rdv .deco-clouds-bottom{ opacity:.62; }
+
+/* Avis : un peu plus clean */
+.is-avis .deco-clouds-top,
+.is-avis .deco-clouds-bottom{ opacity:.62; }
+
+/* =========================================================
+   6) RESPONSIVE GLOBAL
+========================================================= */
+@media (max-width: 768px){
+  /* décors */
+  .deco-clouds-top{ width: 280px; top: 13%; opacity:.75; right: -6%; }
+  .deco-clouds-bottom{ width: 300px; bottom: 6.5%; opacity:.75; left: -8%; }
+  .deco-cards{ width: 160px; top: 7%; left: 2%; opacity:.55; }
+  .deco-crystals{ width: 200px; bottom: 1.2%; right: -4%; }
+
+  /* home */
+  .is-home .brand-line1, .is-home .brand-line2{ font-size: 64px; }
+  .is-home .subtitle{ font-size: 18px; }
+
+  .is-home .moon{
     left: 50%;
     top: 10%;
     transform: translateX(-50%);
     width: 160px;
   }
 
-  .deco-clouds-top{ width: 280px; top: 13%; opacity:.75; }
-  .deco-clouds-bottom{ width: 300px; bottom: 6.5%; opacity:.75; }
-  .deco-cards{ width: 160px; top: 7%; left: 2%; opacity:.55; }
-  .deco-crystals{ width: 200px; bottom: 1.2%; }
+  .is-home .photo-secondary{ grid-template-columns: 1fr; }
 
-  .btn{ padding: 14px 26px; }
-}
-
-/* =====================================================
-   CHARTE DE BIENVEILLANCE — FIX 100% (SANS :has)
-   Nécessite :
-   - <main class="page page-charte">
-   - <body class="is-charte"> sur la page charte
-===================================================== */
-
-/* accessibilité */
-.page-charte .visually-hidden{
-  position:absolute;
-  width:1px;
-  height:1px;
-  overflow:hidden;
-  clip:rect(0,0,0,0);
-  white-space:nowrap;
-  border:0;
-}
-
-/* conteneur */
-.page-charte{
-  position:relative;
-  z-index:1;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 70px 18px 40px;
-  min-height: 82vh;
-}
-
-/* header */
-.page-charte .page-header{
-  position: relative;
-  z-index: 2;
-  text-align:center;
-  margin-bottom: 24px;
-}
-
-/* titre net */
-.page-charte .page-title{
-  margin:0;
-  font-family:"Blackadder", cursive;
-  font-size: clamp(46px, 5.4vw, 86px);
-  line-height:.95;
-  color:#80586D;
-  padding: 0 6px;
-  text-shadow:
-    0 0 4px rgba(128,88,109,.35),
-    0 12px 30px rgba(0,0,0,.35);
-}
-
-/* carte — on FORCE la suppression du blur */
-.page-charte .prose{
-  position: relative;
-  z-index: 1;
-  max-width: 76ch;
-  margin: 0 auto;
-  padding: clamp(18px, 2.2vw, 28px);
-  border-radius: 22px;
-
-  background: rgba(8,8,32,.78);
-  border: 1px solid rgba(245,223,77,.18);
-  box-shadow: 0 18px 40px rgba(0,0,0,.45);
-
-  /* IMPORTANT : kill blur résiduel */
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-  filter: none !important;
-}
-
-.page-charte .prose-centered{ text-align:center; }
-
-/* liste */
-.page-charte .charte{
-  margin:0;
-  padding-left: 1.25em;
-  display:grid;
-  gap: 12px;
-  font-size: clamp(16px, 1.1vw, 19px);
-  line-height: 1.75;
-  text-align:left;
-  color: rgba(255,255,255,.95);
-}
-
-.page-charte .charte-centered{
-  max-width: 72ch;
-  margin-left:auto;
-  margin-right:auto;
-}
-
-.page-charte .charte li::marker{
-  color:#F5DF4D;
-  font-weight:800;
-}
-
-/* bouton retour */
-.page-charte .btn-group{
-  display:flex;
-  justify-content:center;
-  margin-top: 28px;
-}
-
-/* =====================================================
-   ICI : on supprime / adoucit les décors UNIQUEMENT sur la charte
-   -> plus de “zone bizarre” derrière le titre
-===================================================== */
-.is-charte .deco-stars{ display:none !important; }
-
-/* si tu veux garder les étoiles mais sans la grosse forme en haut à droite :
-   commente la ligne au-dessus et utilise plutôt :
-   .is-charte .deco-stars{ opacity:.10 !important; }
-*/
-
-.is-charte .deco-clouds-top,
-.is-charte .deco-clouds-bottom{ opacity:.55 !important; }
-
-.is-charte .deco-cards{ opacity:.42 !important; }
-
-/* mobile */
-@media (max-width: 768px){
-  .page-charte{
-    padding: 58px 16px 34px;
+  /* pages */
+  .page{
+    padding-top: calc(56px + env(safe-area-inset-top));
     min-height: 86svh;
   }
 
-  .page-charte .prose{
+  .prose{
     max-width: 100%;
     border-radius: 18px;
     padding: 16px 14px;
   }
 
-  .page-charte .charte{
-    gap: 10px;
-    font-size: 16px;
-  }
-
-  .is-charte .deco-clouds-top{ width: 280px; top: 14%; right: -8%; }
-  .is-charte .deco-clouds-bottom{ width: 300px; bottom: 6%; left: -10%; }
-  .is-charte .deco-cards{ width: 160px; top: 7%; left: -6%; }
-  .is-charte .deco-crystals{ width: 200px; bottom: 1%; right: -5%; }
+  .btn{ padding: 14px 26px; }
 }
 
 @media (max-width: 420px){
-  .page-charte .page-title{ font-size: 44px; }
-  .page-charte .charte{ font-size: 15.8px; }
+  .page-title{ font-size: 44px; }
 }
