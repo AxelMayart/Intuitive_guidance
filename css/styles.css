@@ -29,7 +29,12 @@ a{ color:inherit; }
 body{
   min-height:100vh;
   overflow-x:hidden;
-  background: radial-gradient(circle at top, var(--bg1) 0%, var(--bg2) 62%);
+
+  /* ✅ FOND UNIQUE : /images/background.jpg + voile sombre (lisibilité) */
+  background:
+    linear-gradient(rgba(8,8,32,.78), rgba(8,8,32,.78)),
+    url("../images/background.jpg") center / cover no-repeat fixed;
+
   color: var(--text);
   font-family: Georgia, "Times New Roman", serif;
   position:relative;
@@ -45,8 +50,10 @@ body{
 
 /* =========================================================
    1) DÉCORS (communs à tout le site)
+   ✅ Désactivés car remplacés par le fond unique
 ========================================================= */
 .deco{
+  display:none !important; /* ✅ clé : empêche les anciennes images de se superposer */
   position: fixed;
   pointer-events:none;
   z-index: 0;
@@ -358,6 +365,7 @@ body{
 /* =========================================================
    5) AJUSTEMENTS DÉCORS PAR PAGE (SANS :has)
    -> on joue sur le BODY CLASS
+   ✅ inchangé (mais sans effet car .deco est hidden)
 ========================================================= */
 /* Charte : on enlève les étoiles pour éviter tout effet visuel parasite */
 .is-charte .deco-stars{ display:none; }
@@ -377,7 +385,7 @@ body{
    6) RESPONSIVE GLOBAL
 ========================================================= */
 @media (max-width: 768px){
-  /* décors */
+  /* décors (sans effet car .deco est hidden) */
   .deco-clouds-top{ width: 280px; top: 13%; opacity:.75; right: -6%; }
   .deco-clouds-bottom{ width: 300px; bottom: 6.5%; opacity:.75; left: -8%; }
   .deco-cards{ width: 160px; top: 7%; left: 2%; opacity:.55; }
