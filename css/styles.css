@@ -3,6 +3,7 @@
 ========================= */
 *{ box-sizing:border-box; }
 html,body{ margin:0; padding:0; }
+
 body{
   min-height:100vh;
   overflow-x:hidden;
@@ -12,7 +13,7 @@ body{
   position:relative;
 }
 
-/* (optionnel) si tu as bien la police dans /fonts */
+/* Police */
 @font-face{
   font-family:"Blackadder";
   src: url("../fonts/BlackadderITC.ttf") format("truetype");
@@ -20,7 +21,7 @@ body{
 }
 
 /* =========================
-   DÉCORS (fixed + visibles)
+   DÉCORS
 ========================= */
 .deco{
   position: fixed;
@@ -32,10 +33,8 @@ body{
   outline:0 !important;
   box-shadow:none !important;
   display:block;
-  image-rendering:auto;
 }
 
-/* étoiles en fond (discrètes) */
 .deco-stars{
   inset:0;
   width:100%;
@@ -44,7 +43,6 @@ body{
   opacity:.22;
 }
 
-/* cartes : on les décale un peu pour éviter le contact avec le nuage */
 .deco-cards{
   top: 6%;
   left: 2.5%;
@@ -53,32 +51,21 @@ body{
   opacity:.55;
 }
 
-/* nuages haut : on les descend un peu pour éloigner des cartes */
 .deco-clouds-top{
   top: 12%;
   right: 4%;
   width: 520px;
   opacity:.70;
-
-  background:transparent !important;
-  filter: none !important;
-  mix-blend-mode: normal;
 }
 
-/* nuages bas : on les descend légèrement (plus d’air visuel) */
 .deco-clouds-bottom{
   bottom: 7.5%;
   left: 3%;
   width: 520px;
   transform: scaleX(-1);
   opacity:.70;
-
-  background:transparent !important;
-  filter: none !important;
-  mix-blend-mode: normal;
 }
 
-/* cristaux : on les descend pour ne plus chevaucher le nuage */
 .deco-crystals{
   right: 5%;
   bottom: 1.5%;
@@ -87,7 +74,7 @@ body{
 }
 
 /* =========================
-   HERO
+   HERO (PAGE ACCUEIL – INCHANGÉ)
 ========================= */
 .hero{
   position:relative;
@@ -101,7 +88,6 @@ body{
   justify-content:center;
 }
 
-/* lune (à gauche derrière le titre) */
 .moon{
   position:absolute;
   left: 22%;
@@ -110,12 +96,8 @@ body{
   border-radius:50%;
   box-shadow: 0 0 38px rgba(255,240,180,.35);
   z-index:0;
-
-  -webkit-mask-image: radial-gradient(circle, #000 62%, transparent 76%);
-  mask-image: radial-gradient(circle, #000 62%, transparent 76%);
 }
 
-/* titre */
 .brand{
   position:relative;
   z-index:1;
@@ -134,14 +116,12 @@ body{
   font-size: 92px;
 }
 
-/* petite étoile blanche */
 .star-after{
   width: 30px;
   filter: drop-shadow(0 0 4px rgba(255,255,255,.85));
   transform: translateY(10%);
 }
 
-/* texte */
 .subtitle{
   position:relative;
   z-index:1;
@@ -152,7 +132,7 @@ body{
   text-shadow: 0 2px 10px rgba(0,0,0,.35);
 }
 
-/* boutons */
+/* Boutons globaux */
 .btn-group{
   position:relative;
   z-index:1;
@@ -180,60 +160,8 @@ body{
 }
 
 /* =========================
-   SECTION BAS
+   FOOTER
 ========================= */
-.contact{
-  position: relative;
-  z-index: 1;
-  text-align:center;
-  padding: 70px 18px 70px;
-  border-top: 1px dashed rgba(245,223,77,.22);
-}
-
-.contact p{
-  max-width: 900px;
-  margin: 0 auto 34px;
-  font-size: 20px;
-  line-height: 1.7;
-}
-
-/* photos */
-.photo-showcase{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap: 22px;
-}
-
-.photo-main{
-  width: 260px;
-  aspect-ratio: 1/1;
-  object-fit: cover;
-  border-radius: 999px;
-  filter: grayscale(100%);
-  box-shadow:
-    0 0 0 3px rgba(245,223,77,.18),
-    0 12px 30px rgba(0,0,0,.45);
-}
-
-.photo-secondary{
-  width: min(820px, 92%);
-  display:grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
-}
-
-.photo-thumb{
-  width:100%;
-  aspect-ratio: 4/3;
-  object-fit: cover;
-  border-radius: 18px;
-  box-shadow:
-    0 0 0 2px rgba(245,223,77,.14),
-    0 14px 28px rgba(0,0,0,.40);
-}
-
-/* footer */
 .footer{
   position:relative;
   z-index: 1;
@@ -245,7 +173,7 @@ body{
 }
 
 /* =========================
-   MOBILE
+   MOBILE GLOBAL
 ========================= */
 @media (max-width: 768px){
   .brand-line1, .brand-line2{ font-size: 64px; }
@@ -258,36 +186,29 @@ body{
     width: 160px;
   }
 
-  /* on garde de l’air sur mobile aussi */
   .deco-clouds-top{ width: 280px; top: 13%; opacity:.75; }
   .deco-clouds-bottom{ width: 300px; bottom: 6.5%; opacity:.75; }
   .deco-cards{ width: 160px; top: 7%; left: 2%; opacity:.55; }
   .deco-crystals{ width: 200px; bottom: 1.2%; }
 
   .btn{ padding: 14px 26px; }
-  .photo-secondary{ grid-template-columns: 1fr; }
 }
 
-/* =========================
-   CHARTE DE BIENVEILLANCE
-   (SCOPÉ – INTÉGRÉ + CORRIGÉ VISUEL)
-   IMPORTANT : nécessite <main class="page page-charte">
-========================= */
+/* =====================================================
+   CHARTE DE BIENVEILLANCE (SCOPÉE ET CORRIGÉE)
+   Nécessite <main class="page page-charte">
+===================================================== */
 
 /* accessibilité */
 .page-charte .visually-hidden{
   position:absolute;
   width:1px;
   height:1px;
-  padding:0;
-  margin:-1px;
   overflow:hidden;
   clip:rect(0,0,0,0);
-  white-space:nowrap;
-  border:0;
 }
 
-/* conteneur : centre le contenu (fix “collé en haut/gauche”) */
+/* conteneur */
 .page-charte{
   position:relative;
   z-index:1;
@@ -297,43 +218,52 @@ body{
   min-height: 82vh;
 }
 
-/* header */
+/* header AU-DESSUS DU BLUR */
 .page-charte .page-header{
+  position: relative;
+  z-index: 3;
   text-align:center;
   margin-bottom: 22px;
 }
 
-/* titre : plus propre + fluide */
+/* titre net (plus aucun flou parasite) */
 .page-charte .page-title{
   margin:0;
   font-family:"Blackadder", cursive;
   font-size: clamp(46px, 5.4vw, 86px);
   line-height:.95;
   color:#80586D;
-  text-shadow: 0 0 4px rgba(128,88,109,.35);
   padding: 0 6px;
+  text-shadow:
+    0 0 4px rgba(128,88,109,.35),
+    0 12px 30px rgba(0,0,0,.35);
 }
 
-/* carte de lecture : rend le texte lisible malgré les décors */
+/* CARTE DE TEXTE – BLUR MAÎTRISÉ */
 .page-charte .prose{
+  position: relative;
+  z-index: 1;
   max-width: 76ch;
-  margin: 0 auto;
+  margin: 18px auto 0;          /* DESCENTE clé */
   padding: clamp(16px, 2.2vw, 26px);
   border-radius: 22px;
 
-  background: rgba(0,0,0,.28);                 /* plus fort (capture) */
+  background: rgba(0,0,0,.28);
   border: 1px solid rgba(245,223,77,.14);
   box-shadow: 0 18px 40px rgba(0,0,0,.35);
 
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
+
+  overflow: hidden;             /* empêche les débordements */
+  isolation: isolate;           /* empêche le blur de remonter */
 }
 
 .page-charte .prose-centered{
   text-align:center;
 }
 
-/* Liste : lecture confortable */
+/* liste */
 .page-charte .charte{
   margin:0;
   padding-left: 1.25em;
@@ -356,41 +286,21 @@ body{
   font-weight:800;
 }
 
-/* Bouton : on garde .btn existant ; on ajuste juste la marge */
+/* bouton retour */
 .page-charte .btn-group{
   display:flex;
   justify-content:center;
-  gap: 12px;
-}
-
-.page-charte .btn-group-spaced{
   margin-top: 28px;
 }
 
-/* FIX : si tu as encore un style inline margin-top dans ton HTML */
-.page-charte .btn-group[style]{
-  margin-top: 28px !important;
-}
-
-/* Déco : rendre moins agressif UNIQUEMENT sur la charte (meilleure lisibilité) */
-.page-charte ~ .deco-stars{ opacity:.18; } /* fallback si stars après main */
-.page-charte .deco-stars{ opacity:.18; }   /* si stars dans main (au cas où) */
-
-/* Comme tes décos sont en dehors du main, on ajuste via :has si dispo, sinon on garde le blur de la carte
-   => on fait une approche simple : sur desktop, on baisse surtout les nuages en général quand on est sur la charte
-*/
+/* DÉCORS ATTÉNUÉS UNIQUEMENT POUR LA CHARTE */
 body:has(.page-charte) .deco-clouds-top,
-body:has(.page-charte) .deco-clouds-bottom{
-  opacity:.58;
-}
-body:has(.page-charte) .deco-cards{
-  opacity:.42;
-}
-body:has(.page-charte) .deco-stars{
-  opacity:.18;
-}
+body:has(.page-charte) .deco-clouds-bottom{ opacity:.58; }
 
-/* responsive charte */
+body:has(.page-charte) .deco-cards{ opacity:.42; }
+body:has(.page-charte) .deco-stars{ opacity:.18; }
+
+/* MOBILE CHARTE */
 @media (max-width: 768px){
   .page-charte{
     padding: 58px 16px 34px;
@@ -408,14 +318,12 @@ body:has(.page-charte) .deco-stars{
     font-size: 16px;
   }
 
-  /* réduit les décors sur mobile, uniquement si la charte est présente */
   body:has(.page-charte) .deco-clouds-top{ width: 280px; top: 14%; right: -8%; opacity:.52; }
   body:has(.page-charte) .deco-clouds-bottom{ width: 300px; bottom: 6%; left: -10%; opacity:.52; }
   body:has(.page-charte) .deco-cards{ width: 160px; top: 7%; left: -6%; opacity:.35; }
   body:has(.page-charte) .deco-crystals{ width: 200px; bottom: 1%; right: -5%; opacity:.88; }
 }
 
-/* petits écrans */
 @media (max-width: 420px){
   .page-charte .page-title{ font-size: 44px; }
   .page-charte .charte{ font-size: 15.8px; }
