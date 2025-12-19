@@ -269,3 +269,99 @@ body{
   .btn{ padding: 14px 26px; }
   .photo-secondary{ grid-template-columns: 1fr; }
 }
+/* =========================
+   CHARTE DE BIENVEILLANCE
+   (SCOPÉ – SAFE POUR LE GLOBAL)
+========================= */
+
+/* accessibilité */
+.page-charte .visually-hidden{
+  position:absolute;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+  clip:rect(0,0,0,0);
+}
+
+/* conteneur */
+.page-charte{
+  max-width: 980px;
+  margin: 0 auto;
+  padding: calc(60px + env(safe-area-inset-top)) 18px 40px;
+  min-height: 82svh;
+}
+
+/* header */
+.page-charte .page-header{
+  text-align:center;
+  margin-bottom: 22px;
+}
+
+.page-charte .page-title{
+  margin:0;
+  font-family:"Blackadder", cursive;
+  font-size: clamp(48px, 6vw, 86px);
+  line-height:.95;
+  color:#80586D;
+  text-shadow: 0 0 4px rgba(128,88,109,.35);
+}
+
+/* carte de lecture */
+.page-charte .prose{
+  max-width: 70ch;
+  margin: 0 auto;
+  padding: clamp(16px, 2.2vw, 26px);
+  border-radius: 22px;
+  background: rgba(0,0,0,.22);
+  border: 1px solid rgba(245,223,77,.14);
+  box-shadow: 0 18px 40px rgba(0,0,0,.35);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.page-charte .prose-centered{
+  text-align:center;
+}
+
+/* liste */
+.page-charte .charte{
+  margin:0;
+  padding-left: 1.2em;
+  display:grid;
+  gap: 12px;
+  font-size: clamp(16px, 1.25vw, 19px);
+  line-height: 1.75;
+  text-align:left;
+}
+
+.page-charte .charte-centered{
+  max-width: 68ch;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.page-charte .charte li::marker{
+  color:#F5DF4D;
+  font-weight:800;
+}
+
+/* bouton : on réutilise TON .btn sans le modifier */
+.page-charte .btn-group{
+  display:flex;
+  justify-content:center;
+}
+
+.page-charte .btn-group-spaced{
+  margin-top: 30px;
+}
+
+/* responsive */
+@media (max-width: 768px){
+  .page-charte{
+    padding-top: calc(56px + env(safe-area-inset-top));
+  }
+
+  .page-charte .prose{
+    border-radius: 18px;
+  }
+}
