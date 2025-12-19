@@ -195,8 +195,10 @@ body{
 }
 
 /* =====================================================
-   CHARTE DE BIENVEILLANCE — VERSION STABLE (SANS BLUR)
-   Nécessite <main class="page page-charte">
+   CHARTE DE BIENVEILLANCE — FIX 100% (SANS :has)
+   Nécessite :
+   - <main class="page page-charte">
+   - <body class="is-charte"> sur la page charte
 ===================================================== */
 
 /* accessibilité */
@@ -206,6 +208,8 @@ body{
   height:1px;
   overflow:hidden;
   clip:rect(0,0,0,0);
+  white-space:nowrap;
+  border:0;
 }
 
 /* conteneur */
@@ -226,7 +230,7 @@ body{
   margin-bottom: 24px;
 }
 
-/* titre parfaitement net */
+/* titre net */
 .page-charte .page-title{
   margin:0;
   font-family:"Blackadder", cursive;
@@ -239,7 +243,7 @@ body{
     0 12px 30px rgba(0,0,0,.35);
 }
 
-/* CARTE DE TEXTE — SANS BACKDROP-FILTER */
+/* carte — on FORCE la suppression du blur */
 .page-charte .prose{
   position: relative;
   z-index: 1;
@@ -248,15 +252,17 @@ body{
   padding: clamp(18px, 2.2vw, 28px);
   border-radius: 22px;
 
-  /* fond opaque maîtrisé (clé) */
   background: rgba(8,8,32,.78);
   border: 1px solid rgba(245,223,77,.18);
   box-shadow: 0 18px 40px rgba(0,0,0,.45);
+
+  /* IMPORTANT : kill blur résiduel */
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  filter: none !important;
 }
 
-.page-charte .prose-centered{
-  text-align:center;
-}
+.page-charte .prose-centered{ text-align:center; }
 
 /* liste */
 .page-charte .charte{
@@ -289,25 +295,22 @@ body{
 }
 
 /* =====================================================
-   SUPPRESSION DES ÉTOILES / ARTEFACTS UNIQUEMENT SUR LA CHARTE
+   ICI : on supprime / adoucit les décors UNIQUEMENT sur la charte
+   -> plus de “zone bizarre” derrière le titre
 ===================================================== */
-body:has(.page-charte) .deco-stars{
-  display:none;
-}
+.is-charte .deco-stars{ display:none !important; }
 
-/* on garde nuages / cartes / cristaux mais adoucis */
-body:has(.page-charte) .deco-clouds-top,
-body:has(.page-charte) .deco-clouds-bottom{
-  opacity:.55;
-}
+/* si tu veux garder les étoiles mais sans la grosse forme en haut à droite :
+   commente la ligne au-dessus et utilise plutôt :
+   .is-charte .deco-stars{ opacity:.10 !important; }
+*/
 
-body:has(.page-charte) .deco-cards{
-  opacity:.42;
-}
+.is-charte .deco-clouds-top,
+.is-charte .deco-clouds-bottom{ opacity:.55 !important; }
 
-/* =====================================================
-   MOBILE CHARTE
-===================================================== */
+.is-charte .deco-cards{ opacity:.42 !important; }
+
+/* mobile */
 @media (max-width: 768px){
   .page-charte{
     padding: 58px 16px 34px;
@@ -325,18 +328,10 @@ body:has(.page-charte) .deco-cards{
     font-size: 16px;
   }
 
-  body:has(.page-charte) .deco-clouds-top{
-    width: 280px; top: 14%; right: -8%;
-  }
-  body:has(.page-charte) .deco-clouds-bottom{
-    width: 300px; bottom: 6%; left: -10%;
-  }
-  body:has(.page-charte) .deco-cards{
-    width: 160px; top: 7%; left: -6%;
-  }
-  body:has(.page-charte) .deco-crystals{
-    width: 200px; bottom: 1%; right: -5%;
-  }
+  .is-charte .deco-clouds-top{ width: 280px; top: 14%; right: -8%; }
+  .is-charte .deco-clouds-bottom{ width: 300px; bottom: 6%; left: -10%; }
+  .is-charte .deco-cards{ width: 160px; top: 7%; left: -6%; }
+  .is-charte .deco-crystals{ width: 200px; bottom: 1%; right: -5%; }
 }
 
 @media (max-width: 420px){
