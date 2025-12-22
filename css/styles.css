@@ -29,9 +29,11 @@ a{ color:inherit; }
 body{
   min-height:100vh;
   overflow-x:hidden;
+
   background:
     linear-gradient(rgba(8,8,32,.78), rgba(8,8,32,.78)),
     url("../images/background.jpg") center / cover no-repeat fixed;
+
   color: var(--text);
   font-family: Georgia, "Times New Roman", serif;
   position:relative;
@@ -46,7 +48,7 @@ body{
 }
 
 /* =========================================================
-   1) DÉCORS
+   1) DÉCORS (communs à tout le site)
 ========================================================= */
 .deco{
   display:none !important;
@@ -54,6 +56,10 @@ body{
   pointer-events:none;
   z-index: 0;
   opacity:.95;
+  background: transparent !important;
+  border:0 !important;
+  outline:0 !important;
+  box-shadow:none !important;
 }
 
 /* =========================================================
@@ -93,7 +99,7 @@ body{
   position:relative;
   z-index: 1;
   text-align:center;
-  padding: 22px var(--pad) 40px;
+  padding: 22px var(--pad) calc(40px + env(safe-area-inset-bottom));
   color: rgba(245,223,77,.85);
   border-top: 1px dashed rgba(245,223,77,.15);
   font-size: .95rem;
@@ -107,7 +113,7 @@ body{
   z-index:1;
   max-width: var(--container);
   margin: 0 auto;
-  padding: 68px var(--pad) 40px;
+  padding: calc(68px + env(safe-area-inset-top)) var(--pad) 40px;
   min-height: 82svh;
 }
 
@@ -146,7 +152,7 @@ body{
 }
 
 /* =========================================================
-   ⭐ TITRE HOME — SEULE PARTIE MODIFIÉE ⭐
+   ⭐ TITRE HOME — SEULE MODIFICATION
 ========================================================= */
 
 .is-home .brand{
@@ -188,14 +194,17 @@ body{
 }
 
 /* =========================================================
-   TEXTE & CONTACT
+   TEXTE HOME
 ========================================================= */
 .is-home .subtitle{
+  position:relative;
+  z-index:1;
   margin: 22px auto 26px;
   max-width: 820px;
   font-size: 22px;
   line-height: 1.7;
   color: rgba(255,255,255,.9);
+  text-shadow: 0 2px 10px rgba(0,0,0,.35);
 }
 
 /* =========================================================
@@ -205,8 +214,8 @@ body{
   .is-home .brand-line1,
   .is-home .brand-line2{
     font-size: 64px;
-    letter-spacing: .05em;
   }
+
   .is-home .star-after{
     width: 20px;
   }
