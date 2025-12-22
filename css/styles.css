@@ -180,11 +180,21 @@ body{
 
 .page-title{
   margin:0;
-  font-family:"Blackadder", cursive;
-  font-size: clamp(46px, 5.4vw, 86px);
-  line-height:.95;
-  color: var(--mauve);
-  text-shadow: 0 0 4px rgba(128,88,109,.35), 0 12px 30px rgba(0,0,0,.35);
+  /* ✅ Titre façon "photo 2" : serif élégante, italique, doré/champagne, glow doux */
+  font-family: "Georgia", "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(44px, 5.2vw, 82px);
+  line-height: 1.02;
+  letter-spacing: .02em;
+
+  /* doré/champagne plus doux que le jaune vif */
+  color: rgba(245,223,77,.88);
+
+  /* glow + profondeur subtile (sans effet “cartoon”) */
+  text-shadow:
+    0 0 10px rgba(245,223,77,.20),
+    0 10px 26px rgba(0,0,0,.40);
   padding: 0 6px;
 }
 
@@ -279,10 +289,19 @@ body{
   position:relative;
   z-index:1;
   margin: 0;
-  font-family:"Blackadder", cursive;
-  color: var(--mauve);
-  text-shadow: 0 0 4px rgba(128,88,109,.35);
-  line-height:.95;
+
+  /* ✅ Titre façon "photo 2" : serif élégante, italique, doré/champagne, glow doux */
+  font-family: "Georgia", "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 500;
+  color: rgba(245,223,77,.88);
+  letter-spacing: .02em;
+
+  text-shadow:
+    0 0 10px rgba(245,223,77,.20),
+    0 10px 26px rgba(0,0,0,.40);
+
+  line-height: 1.02;
 }
 
 .is-home .brand-line1{ display:block; font-size: 92px; }
