@@ -180,21 +180,35 @@ body{
 
 .page-title{
   margin:0;
-  /* ✅ Titre façon "photo 2" : serif élégante, italique, doré/champagne, glow doux */
-  font-family: "Georgia", "Times New Roman", serif;
+
+  /* ✅ STYLE "photo 2" : serif luxe + doré métallisé (dégradé) + ombre subtile */
+  font-family: "Garamond", "Palatino Linotype", "Book Antiqua", Georgia, "Times New Roman", serif;
   font-style: italic;
-  font-weight: 500;
-  font-size: clamp(44px, 5.2vw, 82px);
+  font-weight: 400;
+  font-size: clamp(44px, 5.0vw, 80px);
   line-height: 1.02;
-  letter-spacing: .02em;
+  letter-spacing: .045em;
 
-  /* doré/champagne plus doux que le jaune vif */
-  color: rgba(245,223,77,.88);
+  /* doré champagne métallisé */
+  background: linear-gradient(180deg,
+    rgba(255,246,214,.98) 0%,
+    rgba(240,215,145,.96) 28%,
+    rgba(196,153,72,.95) 55%,
+    rgba(255,235,180,.97) 82%,
+    rgba(255,248,224,.98) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 
-  /* glow + profondeur subtile (sans effet “cartoon”) */
+  /* léger “filet” pour détacher sur fond sombre */
+  -webkit-text-stroke: 0.6px rgba(60,40,10,.22);
+
+  /* ombre douce (pas de gros glow) */
   text-shadow:
-    0 0 10px rgba(245,223,77,.20),
-    0 10px 26px rgba(0,0,0,.40);
+    0 2px 10px rgba(0,0,0,.35),
+    0 0 18px rgba(255,230,160,.10);
+
   padding: 0 6px;
 }
 
@@ -290,26 +304,45 @@ body{
   z-index:1;
   margin: 0;
 
-  /* ✅ Titre façon "photo 2" : serif élégante, italique, doré/champagne, glow doux */
-  font-family: "Georgia", "Times New Roman", serif;
+  /* ✅ STYLE "photo 2" + mise en ligne type bannière */
+  font-family: "Garamond", "Palatino Linotype", "Book Antiqua", Georgia, "Times New Roman", serif;
   font-style: italic;
-  font-weight: 500;
-  color: rgba(245,223,77,.88);
-  letter-spacing: .02em;
+  font-weight: 400;
+  letter-spacing: .045em;
+  line-height: 1.02;
+
+  /* doré champagne métallisé */
+  background: linear-gradient(180deg,
+    rgba(255,246,214,.98) 0%,
+    rgba(240,215,145,.96) 28%,
+    rgba(196,153,72,.95) 55%,
+    rgba(255,235,180,.97) 82%,
+    rgba(255,248,224,.98) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-stroke: 0.6px rgba(60,40,10,.22);
 
   text-shadow:
-    0 0 10px rgba(245,223,77,.20),
-    0 10px 26px rgba(0,0,0,.40);
+    0 2px 10px rgba(0,0,0,.35),
+    0 0 18px rgba(255,230,160,.10);
 
-  line-height: 1.02;
+  /* 1 ligne sur grand écran, wrap propre sur mobile */
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  align-items:baseline;
+  column-gap: 20px;
+  row-gap: 8px;
 }
 
-.is-home .brand-line1{ display:block; font-size: 92px; }
+.is-home .brand-line1{ display:inline-block; font-size: 86px; }
 .is-home .brand-line2{
   display:inline-flex;
-  align-items:center;
-  gap: 10px;
-  font-size: 92px;
+  align-items:baseline;
+  gap: 12px;
+  font-size: 86px;
 }
 
 .is-home .star-after{
